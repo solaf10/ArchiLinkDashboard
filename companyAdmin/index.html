@@ -314,9 +314,11 @@
       }
       /* Start Sidebar */
       .sidebar {
-        position: relative;
+        position: fixed;
+        height: 100vh;
         width: 250px;
         box-shadow: 0 0 10px #ddd;
+        z-index: 100;
       }
       .sidebar .logo-holder h3 {
         margin: 0px;
@@ -384,16 +386,17 @@
         .accordion-list {
           padding-left: 0px !important;
         }
-        .sidebar ul li a span,
-        .sidebar ul li span {
+        .sidebar span {
           display: none;
         }
       }
       /* End Sidebar */
       /* Start Content */
       .page > .content {
+        transform: translateX(250px);
         overflow: hidden;
         background-color: #c0c0c033;
+        width: calc(100% - 250px);
       }
       .head .search::before {
         font-family: var(--fa-style-family-classic);
@@ -466,6 +469,12 @@
           margin-left: 10px;
           margin-right: 10px;
           gap: 10px;
+        }
+        .page > .content {
+          transform: translateX(58px);
+          overflow: hidden;
+          background-color: #c0c0c033;
+          width: calc(100% - 58px);
         }
       }
       /* End Content */
@@ -1238,6 +1247,22 @@
       .courses-page {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
+      .courses-page .course .info .title {
+        cursor: pointer;
+        background-color: var(--blue-alt-color);
+      }
+      .courses-page .course {
+        position: relative;
+      }
+      .courses-page .course .sale {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        background-color: floralwhite;
+        border-radius: 0px;
+        color: var(--blue-color);
+      }
       @media (max-width: 767px) {
         .courses-page {
           grid-template-columns: minmax(200px, 1fr);
@@ -1250,7 +1275,7 @@
         overflow: hidden;
       }
       .courses-page .course .cover {
-        max-width: 100%;
+        width: 100%;
       }
       .courses-page .course .instructor {
         position: absolute;
@@ -1550,12 +1575,17 @@
       .wrapper .content table td > img {
         width: 100px;
       }
-      .wrapper .content table .btns {
+      .wrapper .content table .btns,
+      .courses-page .btns {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      .wrapper .content table .btns img {
+      .courses-page .btns {
+        gap: 10px;
+      }
+      .wrapper .content table .btns img,
+      .courses-page .btns img {
         width: 15px;
         height: 15px;
       }
@@ -1564,7 +1594,8 @@
         height: 60px;
         border-radius: 8px;
       }
-      table tbody td .control-btn {
+      table tbody td .control-btn,
+      .courses-page .control-btn {
         width: 48px;
         height: 41px;
         padding: 9px 16px;
@@ -1573,23 +1604,35 @@
         background-color: transparent;
         cursor: pointer;
       }
-      table tbody td .control-btn.edit {
+      .courses-page .control-btn {
+        width: fit-content;
+        height: auto;
+        border: none;
+        padding: 0px;
+      }
+      table tbody td .control-btn.edit,
+      .courses-page .control-btn.edit {
         border-right: none;
         border-radius: 8px 0px 0px 8px;
       }
-      table tbody td .control-btn.delete {
+      table tbody td .control-btn.delete,
+      .courses-page .control-btn.delete {
         border-radius: 0px 8px 8px 0px;
       }
-      table tbody td .control-btn img {
+      table tbody td .control-btn img,
+      .courses-page .control-btn img {
         width: 15px;
         height: 15px;
         transition: 0.5s;
       }
-      table tbody td .control-btn i {
+      table tbody td .control-btn i,
+      .courses-page .control-btn i {
         transition: 0.5s;
       }
       table tbody td .control-btn:hover img,
-      table tbody td .control-btn:hover i {
+      table tbody td .control-btn:hover i,
+      .courses-page .control-btn:hover i,
+      .courses-page .control-btn:hover img {
         transform: scale(1.1);
       }
 
@@ -1615,11 +1658,23 @@
         background-color: white;
       }
       /* css */
-      .filters {
+      .filters,
+      .filters-holder {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        margin: 0px 20px 40px;
+        flex-wrap: wrap;
+        div {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+      }
+      .filters {
+        margin: 20px 20px 0px;
+      }
+      .filters-holder {
+        gap: 30px;
       }
       .filters .search::before {
         font-family: var(--fa-style-family-classic);
@@ -1666,9 +1721,6 @@
         background-color: transparent;
         padding: 0px;
       }
-      .cities-holder .btns button img {
-        width: 17px;
-      }
       @media (max-width: 767px) {
         .wrapper .cities-holder .box {
           width: 100%;
@@ -1685,8 +1737,62 @@
         top: 0;
         left: 0;
         background: #00000080;
+        z-index: 100;
+      }
+      .overlay.more-infos {
+        background-color: transparent;
+      }
+      .overlay.more-infos .back {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #00000080;
+      }
+      .overlay.more-infos .content {
+        display: block;
+        height: auto;
+        ul {
+          margin: 0px;
+          p {
+            font-size: 14px;
+            color: var(--grey-color);
+          }
+          .colors {
+            display: flex;
+            gap: 10px;
+          }
+          p.color {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+          }
+        }
+        ul.size {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #eee;
+          margin-bottom: 30px;
+          padding-bottom: 10px;
+        }
+        ul.detailed-infos {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(1fr));
+          gap: 20px 30px;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h4,
+            p {
+              margin: 0px;
+            }
+          }
+        }
       }
       .overlay .content {
+        position: fixed;
         padding: 40px;
         min-width: 50%;
         height: 321px;
@@ -1727,10 +1833,10 @@
         transform: scale(0.95);
       }
       .overlay .content .btns .popup-btn.confirm {
-        background-color: #ef3826;
+        background-color: var(--red-color);
       }
       .overlay .content .btns .popup-btn.cancel {
-        background-color: #4880ff;
+        background-color: var(--blue-color);
       }
       .overlay.notification .content {
         position: relative;
@@ -1771,14 +1877,20 @@
         display: none;
       }
       /*  */
-      .wrapper {
-        margin-top: 40px;
-      }
-      .wrapper > h2 {
-        margin: 10px 0px;
-        /* font-weight: normal; */
-        font-size: 20px;
+      .btn.reset-btn {
+        border: 1px solid var(--blue-color);
         color: var(--blue-color);
+        background-color: transparent;
+      }
+      .btn.reset-btn:hover {
+        box-shadow: none;
+        color: white !important;
+        background-color: var(--blue-color);
+      }
+      .friend {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     </style>
   </head>
@@ -1913,12 +2025,12 @@
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head p-15 between-flex">
-          <p style="margin: 0px">Cities</p>
+          <p style="margin: 0px">Products</p>
           <div class="icons d-flex align-center">
             <span
               style="cursor: pointer"
               class="notification p-relative"
-              onclick="handlePopUp(true,1)"
+              onclick="handleSettingsPopUp(true,1)"
             >
               <i class="fa-regular fa-bell fa-lg"></i>
             </span>
@@ -1929,140 +2041,472 @@
         </div>
         <!-- End Head -->
         <div class="special-head" style="margin-bottom: 20px">
-          <h1 class="p-relative">Cities</h1>
+          <h1 class="p-relative">Manage Products</h1>
           <a href="addCity.html" class="btn">+ Add City</a>
         </div>
         <div class="wrapper d-grid gap-20">
-          <div class="filters">
-            <div class="search p-relative">
-              <input class="p-10" type="search" placeholder="Type A Keyword" />
+          <div class="filters" style="justify-content: space-between">
+            <div class="filters-holder">
+              <div class="name">
+                <label style="color: var(--blue-color)" for="name-search"
+                  >Name</label
+                >
+                <div class="search p-relative">
+                  <input
+                    id="name-search"
+                    class="p-10"
+                    type="search"
+                    placeholder="Type A Keyword"
+                  />
+                </div>
+              </div>
+              <div class="category">
+                <label style="color: var(--blue-color)" for="role-select"
+                  >Category&style</label
+                >
+                <select
+                  id="role-select"
+                  style="
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    color: #888;
+                    background-color: white;
+                    box-shadow: none;
+                  "
+                  class="btn"
+                  name="role"
+                >
+                  <option value="all">All</option>
+                  <optgroup label="Bedroom">
+                    <option value="beds">Beds</option>
+                    <option value="mirror">mirror</option>
+                  </optgroup>
+                  <optgroup label="livingroom">
+                    <option value="sofa">sofa</option>
+                    <option value="table">Customer</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="style">
+                <label
+                  for="style-filter"
+                  style="color: var(--blue-color)"
+                  for="role-select"
+                  >Style</label
+                >
+                <select
+                  style="
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    color: #888;
+                    background-color: white;
+                    box-shadow: none;
+                  "
+                  class="btn"
+                  id="style-filter"
+                >
+                  <option value="all">All</option>
+                  <option value="classic">classic</option>
+                  <option value="modern">modern</option>
+                </select>
+              </div>
+              <div class="material">
+                <label
+                  for="material-filter"
+                  style="color: var(--blue-color)"
+                  for="role-select"
+                  >Material</label
+                >
+                <select
+                  style="
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    color: #888;
+                    background-color: white;
+                    box-shadow: none;
+                  "
+                  class="btn"
+                  id="material-filter"
+                >
+                  <option value="all">All</option>
+                  <option value="classic">wood</option>
+                  <option value="modern">Fur</option>
+                </select>
+              </div>
+              <div class="color">
+                <label
+                  for="color-filter"
+                  style="color: var(--blue-color)"
+                  for="role-select"
+                  >Color</label
+                >
+                <select
+                  style="
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    color: #888;
+                    background-color: white;
+                    box-shadow: none;
+                  "
+                  class="btn"
+                  id="color-filter"
+                >
+                  <option value="all">All</option>
+                  <option value="plum" style="background-color: plum"></option>
+                  <option
+                    value="purple"
+                    style="background-color: purple"
+                  ></option>
+                  <option value="pink" style="background-color: pink"></option>
+                  <option
+                    value="powderblue"
+                    style="background-color: powderblue"
+                  ></option>
+                  <option
+                    value="burlywood"
+                    style="background-color: burlywood"
+                  ></option>
+                </select>
+              </div>
+              <div class="btn reset-btn" onclick="resetFilters()">Reset</div>
             </div>
           </div>
-          <div class="cities-holder d-flex txt-c gap-20 f-wrap">
-            <div class="box p-20 rad-10 fs-13 c-grey">
-              <span class="d-block c-black fw-bold fs-25 mb-5">Homs</span>
-              <div class="btns">
-                <a
-                  style="display: inline-block"
-                  href="editCity.html"
-                  class="control-btn edit"
-                >
-                  <img src="../imgs/pencil-write.png" alt="edit" />
-                </a>
-                <button
+          <div class="courses-page d-grid m-20 gap-20">
+            <div class="course bg-white rad-6 p-relative">
+              <span class="sale">50%</span>
+              <img class="cover" src="../imgs/course-01.jpg" alt="" />
+              <div class="p-20">
+                <h3 class="m-0">Bed</h3>
+                <p class="description c-grey mt-15 fs-14">
+                  Master The Art Of Web Designing And Mocking, Prototyping And
+                  Creating Web Design Architecture
+                </p>
+                <div
+                  class="products-settings"
                   style="
-                    border: none;
-                    background-color: transparent;
-                    padding: 0px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    margin: 0px 0px 5px;
                   "
-                  class="control-btn delete"
-                  onclick="handlePopUp(true,0)"
                 >
-                  <img src="../imgs/bin.png" alt="del" />
-                </button>
+                  <span style="font-size: inherit">5 days to make</span>
+                  <div class="btns">
+                    <a href="editWorkTime.html" class="control-btn edit">
+                      <img src="../imgs/pencil-write.png" alt="edit" />
+                    </a>
+                    <button
+                      class="control-btn delete"
+                      onclick="handleSettingsPopUp(true,0)"
+                    >
+                      <img src="../imgs/bin.png" alt="del" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="info p-15 p-relative between-flex">
+                <span
+                  class="title bg-blue c-white btn-shape"
+                  onclick="handlePopUp(true,0)"
+                  >Product Info</span
+                >
+                <span class="c-grey">
+                  <i class="fa-regular fas fa-tags"></i>
+                  4 items
+                </span>
+                <span class="c-grey">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  165
+                </span>
+              </div>
+              <div class="overlay more-infos" style="display: none">
+                <div class="back" onclick="handlePopUp(false, 0)"></div>
+                <div class="content">
+                  <ul class="size">
+                    <li>
+                      <h4>width</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>height</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>length</h4>
+                      <p>15cm</p>
+                    </li>
+                  </ul>
+                  <ul class="detailed-infos">
+                    <li>
+                      <h4>Category</h4>
+                      <p>Bedroom</p>
+                    </li>
+                    <li>
+                      <h4>Type</h4>
+                      <p>bed</p>
+                    </li>
+                    <li>
+                      <h4>Style</h4>
+                      <p>classic</p>
+                    </li>
+                    <li>
+                      <h4>Material</h4>
+                      <p>wood</p>
+                    </li>
+                    <li>
+                      <h4>Design Type</h4>
+                      <p>interior</p>
+                    </li>
+                    <li>
+                      <h4>Colors</h4>
+                      <div class="colors">
+                        <p class="color" style="background-color: purple"></p>
+                        <p
+                          class="color"
+                          style="background-color: powderblue"
+                        ></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="box p-20 rad-10 fs-13 c-grey">
-              <span class="d-block c-black fw-bold fs-25 mb-5">Damascus</span>
-              <div class="btns">
-                <a
-                  style="display: inline-block"
-                  href="editCity.html"
-                  class="control-btn edit"
-                >
-                  <img src="../imgs/pencil-write.png" alt="edit" />
-                </a>
-                <button
+            <div class="course bg-white rad-6 p-relative">
+              <img class="cover" src="../imgs/course-02.jpg" alt="" />
+              <div class="p-20">
+                <h3 class="m-0">Sofa</h3>
+                <p class="description c-grey mt-15 fs-14">
+                  Master The Art Of Web Designing And Mocking, Prototyping And
+                  Creating Web Design Architecture
+                </p>
+                <div
+                  class="products-settings"
                   style="
-                    border: none;
-                    background-color: transparent;
-                    padding: 0px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    margin: 0px 0px 5px;
                   "
-                  class="control-btn delete"
-                  onclick="handlePopUp(true,0)"
                 >
-                  <img src="../imgs/bin.png" alt="del" />
-                </button>
+                  <span style="font-size: inherit">5 days to make</span>
+                  <div class="btns">
+                    <a href="editWorkTime.html" class="control-btn edit">
+                      <img src="../imgs/pencil-write.png" alt="edit" />
+                    </a>
+                    <button
+                      class="control-btn delete"
+                      onclick="handleSettingsPopUp(true,0)"
+                    >
+                      <img src="../imgs/bin.png" alt="del" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="info p-15 p-relative between-flex">
+                <span
+                  class="title bg-blue c-white btn-shape"
+                  onclick="handlePopUp(true,1)"
+                  >Product Info</span
+                >
+                <span class="c-grey">
+                  <i class="fa-regular fas fa-tags"></i>
+                  4 items
+                </span>
+                <span class="c-grey">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  265
+                </span>
+              </div>
+              <div class="overlay more-infos" style="display: none">
+                <div class="back" onclick="handlePopUp(false, 1)"></div>
+                <div class="content">
+                  <ul class="size">
+                    <li>
+                      <h4>width</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>height</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>length</h4>
+                      <p>15cm</p>
+                    </li>
+                  </ul>
+                  <ul class="detailed-infos">
+                    <li>
+                      <h4>Category</h4>
+                      <p>livingroom</p>
+                    </li>
+                    <li>
+                      <h4>Type</h4>
+                      <p>sofa</p>
+                    </li>
+                    <li>
+                      <h4>Style</h4>
+                      <p>modern</p>
+                    </li>
+                    <li>
+                      <h4>Material</h4>
+                      <p>wood</p>
+                    </li>
+                    <li>
+                      <h4>Design Type</h4>
+                      <p>interior</p>
+                    </li>
+                    <li>
+                      <h4>Colors</h4>
+                      <div class="colors">
+                        <p class="color" style="background-color: plum"></p>
+                        <p class="color" style="background-color: pink"></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="box p-20 rad-10 fs-13 c-grey">
-              <span class="d-block c-black fw-bold fs-25 mb-5">Aleppo</span>
-              <div class="btns">
-                <a
-                  style="display: inline-block"
-                  href="editCity.html"
-                  class="control-btn edit"
-                >
-                  <img src="../imgs/pencil-write.png" alt="edit" />
-                </a>
-                <button
+            <div class="course bg-white rad-6 p-relative">
+              <span class="sale">10%</span>
+              <img class="cover" src="../imgs/course-03.jpg" alt="" />
+              <div class="p-20">
+                <h3 class="m-0">sweet chair</h3>
+                <p class="description c-grey mt-15 fs-14">
+                  Master The Art Of Web Designing And Mocking, Prototyping And
+                  Creating Web Design Architecture
+                </p>
+                <div
+                  class="products-settings"
                   style="
-                    border: none;
-                    background-color: transparent;
-                    padding: 0px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: var(--blue-color);
+                    font-size: 13px;
+                    margin: 0px 0px 5px;
                   "
-                  class="control-btn delete"
-                  onclick="handlePopUp(true,0)"
                 >
-                  <img src="../imgs/bin.png" alt="del" />
-                </button>
+                  <span style="font-size: inherit">5 days to make</span>
+                  <div class="btns">
+                    <a href="editWorkTime.html" class="control-btn edit">
+                      <img src="../imgs/pencil-write.png" alt="edit" />
+                    </a>
+                    <button
+                      class="control-btn delete"
+                      onclick="handleSettingsPopUp(true,0)"
+                    >
+                      <img src="../imgs/bin.png" alt="del" />
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="box p-20 rad-10 fs-13 c-grey">
-              <span class="d-block c-black fw-bold fs-25 mb-5">Hama</span>
-              <div class="btns">
-                <a
-                  style="display: inline-block"
-                  href="editCity.html"
-                  class="control-btn edit"
+              <div class="info p-15 p-relative between-flex">
+                <span
+                  class="title bg-blue c-white btn-shape"
+                  onclick="handlePopUp(true,2)"
+                  >Product Info</span
                 >
-                  <img src="../imgs/pencil-write.png" alt="edit" />
-                </a>
-                <button
-                  style="
-                    border: none;
-                    background-color: transparent;
-                    padding: 0px;
-                  "
-                  class="control-btn delete"
-                  onclick="handlePopUp(true,0)"
-                >
-                  <img src="../imgs/bin.png" alt="del" />
-                </button>
+                <span class="c-grey">
+                  <i class="fa-regular fas fa-tags"></i>
+                  4 items
+                </span>
+                <span class="c-grey">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  300
+                </span>
+              </div>
+              <div class="overlay more-infos" style="display: none">
+                <div class="back" onclick="handlePopUp(false, 2)"></div>
+                <div class="content">
+                  <ul class="size">
+                    <li>
+                      <h4>width</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>height</h4>
+                      <p>15cm</p>
+                    </li>
+                    <li>
+                      <h4>length</h4>
+                      <p>15cm</p>
+                    </li>
+                  </ul>
+                  <ul class="detailed-infos">
+                    <li>
+                      <h4>Category</h4>
+                      <p>Outdoorfurniture</p>
+                    </li>
+                    <li>
+                      <h4>Type</h4>
+                      <p>chairs</p>
+                    </li>
+                    <li>
+                      <h4>Style</h4>
+                      <p>classic</p>
+                    </li>
+                    <li>
+                      <h4>Material</h4>
+                      <p>wood</p>
+                    </li>
+                    <li>
+                      <h4>Design Type</h4>
+                      <p>exterior</p>
+                    </li>
+                    <li>
+                      <h4>Colors</h4>
+                      <div class="colors">
+                        <p
+                          class="color"
+                          style="background-color: burlywood"
+                        ></p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-          <div class="overlay" style="display: none">
-            <div class="content">
-              <p>Are You Sure You Want To Delete It?</p>
-              <div class="btns">
-                <button class="confirm popup-btn">Yes</button>
-                <button class="cancel popup-btn" onclick="handlePopUp(false,0)">
-                  No
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="overlay notification" style="display: none">
-            <div class="content">
-              <img src="../imgs/newOrder.png" alt="" />
-              <div class="text">
-                <p>You Have 3 new Orders!!</p>
+          <div class="overlays">
+            <div class="overlay" style="display: none">
+              <div class="content">
+                <p>Are You Sure You Want To Delete It?</p>
                 <div class="btns">
-                  <a
-                    href="order.html"
-                    class="confirm popup-btn"
-                    style="background-color: var(--blue-alt-color)"
-                  >
-                    View
-                  </a>
+                  <button class="confirm popup-btn">Yes</button>
                   <button
                     class="cancel popup-btn"
-                    style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,1)"
+                    onclick="handleSettingsPopUp(false,0)"
                   >
-                    Dismiss
+                    No
                   </button>
+                </div>
+              </div>
+            </div>
+            <div class="overlay notification" style="display: none">
+              <div class="content">
+                <img src="../imgs/newOrder.png" alt="" />
+                <div class="text">
+                  <p>You Have 3 new Orders!!</p>
+                  <div class="btns">
+                    <a
+                      href="order.html"
+                      class="confirm popup-btn"
+                      style="background-color: var(--blue-alt-color)"
+                    >
+                      View
+                    </a>
+                    <button
+                      class="cancel popup-btn"
+                      style="background-color: var(--red-color)"
+                      onclick="handleSettingsPopUp(false,1)"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2076,55 +2520,11 @@
         if (isShow) overlay[elementID].style.display = "flex";
         else overlay[elementID].style.display = "none";
       }
-      // search enable
-      const citiesEls = document.querySelectorAll(
-        ".wrapper .cities-holder .box span"
-      );
-      const searchInput = document.querySelector(".wrapper .filters .search");
-      const citiesParent = document.querySelector(".wrapper .cities-holder");
-
-      const cities = [];
-      let filteredCities = [];
-
-      function searchFunc(cities, keyWord) {
-        return cities.filter((city) =>
-          city.toLowerCase().includes(keyWord.toLowerCase())
-        );
+      const settingsOverlay = document.querySelectorAll(".overlays .overlay");
+      function handleSettingsPopUp(isShow, elementID) {
+        if (isShow) settingsOverlay[elementID].style.display = "flex";
+        else settingsOverlay[elementID].style.display = "none";
       }
-      for (let i = 0; i < citiesEls.length; i++) {
-        cities.push(citiesEls[i].innerHTML);
-      }
-      searchInput.addEventListener("input", (e) => {
-        filteredCities = searchFunc(cities, e.target.value);
-        citiesParent.innerHTML = "";
-        for (let i = 0; i < filteredCities.length; i++) {
-          citiesParent.innerHTML += `
-            <div class="box p-20 rad-10 fs-13 c-grey">
-              <span class="d-block c-black fw-bold fs-25 mb-5">${filteredCities[i]}</span>
-              <div class="btns">
-                <a
-                  style="display: inline-block"
-                  href="editCity.html"
-                  class="control-btn edit"
-                >
-                  <img src="../imgs/pencil-write.png" alt="edit" />
-                </a>
-                <button
-                  style="
-                    border: none;
-                    background-color: transparent;
-                    padding: 0px;
-                  "
-                  class="control-btn delete"
-                  onclick="handlePopUp(true,0)"
-                >
-                  <img src="../imgs/bin.png" alt="del" />
-                </button>
-              </div>
-            </div>
-          `;
-        }
-      });
       // accordion
       const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
@@ -2141,6 +2541,139 @@
             "none";
         }
       }
+      //show Product infos
+      function showProductInfo(infos) {
+        console.log(infos);
+        handlePopUp(true, 2);
+        const {
+          width,
+          height,
+          length,
+          category,
+          type,
+          style,
+          material,
+          designType,
+          colors,
+        } = infos;
+        const holder = document.querySelector(".overlay .content");
+        console.log(holder);
+        let colorsElements = ``;
+        colors.forEach((color) => {
+          colorsElements += `<p class="color" style="background-color: ${color}"></p>`;
+        });
+        holder.innerHTML = "";
+        holder.innerHTML = `
+              <ul class="size">
+                <li>
+                  <h4>width</h4>
+                  <p>${width}</p>
+                </li>
+                <li>
+                  <h4>height</h4>
+                  <p>${height}</p>
+                </li>
+                <li>
+                  <h4>length</h4>
+                  <p>${length}</p>
+                </li>
+              </ul>
+              <ul class="detailed-infos">
+                <li>
+                  <h4>Category</h4>
+                  <p>${category}</p>
+                </li>
+                <li>
+                  <h4>Type</h4>
+                  <p>${type}</p>
+                </li>
+                <li>
+                  <h4>Style</h4>
+                  <p>${style}</p>
+                </li>
+                <li>
+                  <h4>Material</h4>
+                  <p>${material}</p>
+                </li>
+                <li>
+                  <h4>Design Type</h4>
+                  <p>${designType}</p>
+                </li>
+                <li>
+                  <h4>Colors</h4>
+                  <div class="colors">
+                    ${colorsElements}
+                  </div>
+                </li>
+              </ul>`;
+      }
+      // filters
+      /* const productInfos = document.querySelectorAll(
+        ".wrapper .courses-page .course .content"
+      );
+      const productName = document.querySelectorAll(
+        ".wrapper .courses-page .course h3"
+      );
+      const searchInput = document.querySelector(
+        ".wrapper .filters .search input"
+      );
+      const selects = document.querySelectorAll(".wrapper .filters select");
+      const productInfosHolder = document.querySelector(
+        ".wrapper .courses-page"
+      );
+      let filteredNames = [];
+      let filteredRoles = [];
+      function resetFilters() {
+        selects.forEach((select) => (select.value = "all"));
+        searchInput.value = "";
+        showCards();
+      }
+      function showCards(
+        cards = Array.from(productInfos),
+        cardsHolder = productInfosHolder
+      ) {
+        cardsHolder.innerHTML = "";
+        for (let i = 0; i < cards.length; i++) {
+          cardsHolder.appendChild(cards[i].parentElement);
+        }
+      }
+      let filteredInfos = [];
+      const filters = document.querySelector(
+        ".wrapper .filters .filters-holder"
+      );
+      function filterFunc(name, type, style, material, color, arr) {
+        if (name == "" && role == "all") {
+          return Array.from(arr);
+        } else if (role == "all") {
+          return Array.from(arr).filter((client) =>
+            client.children[1].innerHTML.toLowerCase().includes(name)
+          );
+        } else if (name == "") {
+          console.log(12);
+          return Array.from(arr).filter((client) =>
+            client.children[2].innerHTML.toLowerCase().includes(role)
+          );
+        }
+        return Array.from(arr)
+          .filter((client) =>
+            client.children[1].innerHTML.toLowerCase().includes(name)
+          )
+          .filter((client) =>
+            client.children[2].innerHTML.toLowerCase().includes(role)
+          );
+      }
+      filters.addEventListener("input", (e) => {
+        filteredInfos = filterFunc(
+          searchInput.value.toLowerCase(),
+          select[0].value.toLowerCase(),
+          select[1].value.toLowerCase(),
+          select[2].value.toLowerCase(),
+          select[3].value.toLowerCase()
+        );
+        showCards(filteredInfos, productInfosHolder);
+      });
+     */
+      // function filter()
     </script>
   </body>
 </html>
