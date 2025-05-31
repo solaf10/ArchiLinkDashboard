@@ -314,11 +314,26 @@
       }
       /* Start Sidebar */
       .sidebar {
-        position: fixed;
-        height: 100vh;
+        position: relative;
         width: 250px;
         box-shadow: 0 0 10px #ddd;
-        z-index: 100;
+      }
+      .sidebar > .holder {
+        position: fixed;
+        width: 179px;
+        height: 100vh;
+      }
+      @media (max-width: 991px) {
+        .sidebar > .holder {
+          position: fixed;
+          width: 165px;
+        }
+      }
+      @media (max-width: 991px) {
+        .sidebar > .holder {
+          position: fixed;
+          width: 32px;
+        }
       }
       .sidebar .logo-holder h3 {
         margin: 0px;
@@ -386,17 +401,16 @@
         .accordion-list {
           padding-left: 0px !important;
         }
-        .sidebar span {
+        .sidebar ul li a span,
+        .sidebar ul li span {
           display: none;
         }
       }
       /* End Sidebar */
       /* Start Content */
       .page > .content {
-        transform: translateX(250px);
         overflow: hidden;
         background-color: #c0c0c033;
-        width: calc(100% - 250px);
       }
       .head .search::before {
         font-family: var(--fa-style-family-classic);
@@ -469,12 +483,6 @@
           margin-left: 10px;
           margin-right: 10px;
           gap: 10px;
-        }
-        .page > .content {
-          transform: translateX(58px);
-          overflow: hidden;
-          background-color: #c0c0c033;
-          width: calc(100% - 58px);
         }
       }
       /* End Content */
@@ -1878,14 +1886,14 @@
       }
       /*  */
       .btn.reset-btn {
-        border: 1px solid var(--blue-color);
+        background-color: #c0c0c0;
         color: var(--blue-color);
-        background-color: transparent;
+        border: none;
       }
       .btn.reset-btn:hover {
-        box-shadow: none;
-        color: white !important;
-        background-color: var(--blue-color);
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+          rgba(17, 17, 26, 0.1) 0px 8px 24px,
+          rgba(17, 17, 26, 0.1) 0px 16px 56px;
       }
       .friend {
         display: flex;
@@ -1897,130 +1905,133 @@
   <body>
     <div class="page d-flex">
       <div class="sidebar p-20 p-relative">
-        <div class="logo-holder">
-          <img
-            style="width: 30px; height: 30px"
-            src="../imgs/logo.png"
-            alt=""
-          />
-          <h3 class="p-relative txt-c mt-0">ArchiLink</h3>
-        </div>
-        <ul>
-          <li>
-            <a
-              class="active d-flex align-center fs-14 c-black rad-6 p-10"
-              href="index.html"
-            >
-              <i class="fa-regular fas fa-city"></i>
-              <span>Product</span>
-            </a>
-          </li>
+        <div class="holder">
+          <div class="logo-holder">
+            <img
+              style="width: 30px; height: 30px"
+              src="../imgs/logo.png"
+              alt=""
+            />
+            <h3 class="p-relative txt-c mt-0">ArchiLink</h3>
+          </div>
+          <ul>
+            <li>
+              <a
+                class="active d-flex align-center fs-14 c-black rad-6 p-10"
+                href="index.html"
+              >
+                <i class="fa-regular fas fa-city"></i>
+                <span>Product</span>
+              </a>
+            </li>
 
-          <li class="accordion">
-            <div
-              class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
-            >
-              <div class="holder">
-                <i class="far fa-trash-alt fa-fw"></i>
-                <span>Order</span>
-              </div>
+            <li class="accordion">
               <div
-                class="icon closed"
-                onclick="showNestedList(true,event,this)"
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
               >
-                <i class="arrow fas fa-angle-down"></i>
+                <div class="holder">
+                  <i class="far fa-trash-alt fa-fw"></i>
+                  <span>Order</span>
+                </div>
+                <div
+                  class="icon closed"
+                  onclick="showNestedList(true,event,this)"
+                >
+                  <i class="arrow fas fa-angle-down"></i>
+                </div>
               </div>
-            </div>
-            <div class="accordion-list" style="padding-left: 10px">
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="workTimesTrash.html"
-              >
-                <i class="far fa-clock fa-fw"></i>
-                <span>Shop</span>
-              </a>
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="cityTrash.html"
-              >
-                <i class="fa-regular fas fa-city"></i>
-                <span>Customize</span>
-              </a>
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="areaTrash.html"
-              >
-                <i class="fa-solid fas fa-chart-area fa-fw"></i>
-                <span>Areas Trash</span>
-              </a>
-            </div>
-          </li>
-          <li>
-            <a
-              class="d-flex align-center fs-14 c-black rad-6 p-10"
-              href="settings.html"
-            >
-              <i class="fa-solid fa-gear fa-fw"></i>
-              <span>Delivery</span>
-            </a>
-          </li>
-          <li class="accordion">
-            <div
-              class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
-            >
-              <div class="holder">
-                <i class="far fa-trash-alt fa-fw"></i>
-                <span>Deleted Items</span>
+              <div class="accordion-list" style="padding-left: 10px">
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="workTimesTrash.html"
+                >
+                  <i class="far fa-clock fa-fw"></i>
+                  <span>Shop</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="cityTrash.html"
+                >
+                  <i class="fa-regular fas fa-city"></i>
+                  <span>Customize</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="areaTrash.html"
+                >
+                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
+                  <span>Areas Trash</span>
+                </a>
               </div>
+            </li>
+            <li>
+              <a
+                class="d-flex align-center fs-14 c-black rad-6 p-10"
+                href="settings.html"
+              >
+                <i class="fa-solid fa-gear fa-fw"></i>
+                <span>Delivery</span>
+              </a>
+            </li>
+            <li class="accordion">
               <div
-                class="icon closed"
-                onclick="showNestedList(true,event,this)"
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
               >
-                <i class="arrow fas fa-angle-down"></i>
+                <div class="holder">
+                  <i class="far fa-trash-alt fa-fw"></i>
+                  <span>Deleted Items</span>
+                </div>
+                <div
+                  class="icon closed"
+                  onclick="showNestedList(true,event,this)"
+                >
+                  <i class="arrow fas fa-angle-down"></i>
+                </div>
               </div>
-            </div>
-            <div class="accordion-list" style="padding-left: 10px">
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="workTimesTrash.html"
-              >
-                <i class="far fa-clock fa-fw"></i>
-                <span>WorkTimes Trash</span>
-              </a>
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="cityTrash.html"
-              >
-                <i class="fa-regular fas fa-city"></i>
-                <span>Cities Trash</span>
-              </a>
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="areaTrash.html"
-              >
-                <i class="fa-solid fas fa-chart-area fa-fw"></i>
-                <span>Areas Trash</span>
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button
-          style="
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: none;
-            background-color: #c0c0c04d;
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 75%;
-          "
-          class="logout"
-        >
-          <i class="log-out-icon fas fa-power-off"></i>
-          <span>Logout</span>
-        </button>
+              <div class="accordion-list" style="padding-left: 10px">
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="workTimesTrash.html"
+                >
+                  <i class="far fa-clock fa-fw"></i>
+                  <span>WorkTimes Trash</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="cityTrash.html"
+                >
+                  <i class="fa-regular fas fa-city"></i>
+                  <span>Cities Trash</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="areaTrash.html"
+                >
+                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
+                  <span>Areas Trash</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button
+            style="
+              padding: 10px 15px;
+              border-radius: 6px;
+              border: none;
+              color: white;
+              background-color: #1a1a1a;
+              position: absolute;
+              bottom: 10%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100%;
+            "
+            class="logout"
+          >
+            <i class="log-out-icon fas fa-power-off"></i>
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
       <div class="content w-full">
         <!-- Start Head -->
@@ -2042,7 +2053,7 @@
         <!-- End Head -->
         <div class="special-head" style="margin-bottom: 20px">
           <h1 class="p-relative">Manage Products</h1>
-          <a href="addCity.html" class="btn">+ Add City</a>
+          <a href="addProduct.html" class="btn">+ Add Product</a>
         </div>
         <div class="wrapper d-grid gap-20">
           <div class="filters" style="justify-content: space-between">
@@ -2054,7 +2065,7 @@
                 <div class="search p-relative">
                   <input
                     id="name-search"
-                    class="p-10"
+                    class="filter-input p-10"
                     type="search"
                     placeholder="Type A Keyword"
                   />
@@ -2073,17 +2084,17 @@
                     background-color: white;
                     box-shadow: none;
                   "
-                  class="btn"
+                  class="filter-input btn"
                   name="role"
                 >
                   <option value="all">All</option>
                   <optgroup label="Bedroom">
-                    <option value="beds">Beds</option>
-                    <option value="mirror">mirror</option>
+                    <option value="chairs">Chairs</option>
+                    <option value="bed">Bed</option>
                   </optgroup>
                   <optgroup label="livingroom">
-                    <option value="sofa">sofa</option>
-                    <option value="table">Customer</option>
+                    <option value="sofa">Sofa</option>
+                    <option value="table">Table</option>
                   </optgroup>
                 </select>
               </div>
@@ -2102,7 +2113,7 @@
                     background-color: white;
                     box-shadow: none;
                   "
-                  class="btn"
+                  class="filter-input btn"
                   id="style-filter"
                 >
                   <option value="all">All</option>
@@ -2125,12 +2136,35 @@
                     background-color: white;
                     box-shadow: none;
                   "
-                  class="btn"
+                  class="filter-input btn"
                   id="material-filter"
                 >
                   <option value="all">All</option>
-                  <option value="classic">wood</option>
+                  <option value="wood">wood</option>
                   <option value="modern">Fur</option>
+                </select>
+              </div>
+              <div class="design-type">
+                <label
+                  for="design-type-filter"
+                  style="color: var(--blue-color)"
+                  for="role-select"
+                  >Design Type:</label
+                >
+                <select
+                  style="
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    color: #888;
+                    background-color: white;
+                    box-shadow: none;
+                  "
+                  class="filter-input btn"
+                  id="design-type-filter"
+                >
+                  <option value="all">All</option>
+                  <option value="exterior">Exterior</option>
+                  <option value="interior">Interior</option>
                 </select>
               </div>
               <div class="color">
@@ -2148,7 +2182,7 @@
                     background-color: white;
                     box-shadow: none;
                   "
-                  class="btn"
+                  class="colors filter-input btn"
                   id="color-filter"
                 >
                   <option value="all">All</option>
@@ -2168,12 +2202,28 @@
                   ></option>
                 </select>
               </div>
+              <div class="price">
+                <label
+                  for="price-filter"
+                  style="color: var(--blue-color)"
+                  for="role-select"
+                  >Price:</label
+                >
+                <input
+                  class="filter-input"
+                  type="range"
+                  min="0"
+                  step="100"
+                  max="1000"
+                  value="0"
+                />
+                <span style="color: #888" class="price-filter-value"></span>
+              </div>
               <div class="btn reset-btn" onclick="resetFilters()">Reset</div>
             </div>
           </div>
           <div class="courses-page d-grid m-20 gap-20">
             <div class="course bg-white rad-6 p-relative">
-              <span class="sale">50%</span>
               <img class="cover" src="../imgs/course-01.jpg" alt="" />
               <div class="p-20">
                 <h3 class="m-0">Bed</h3>
@@ -2221,6 +2271,7 @@
                   165
                 </span>
               </div>
+              <span class="sale">50%</span>
               <div class="overlay more-infos" style="display: none">
                 <div class="back" onclick="handlePopUp(false, 0)"></div>
                 <div class="content">
@@ -2371,7 +2422,6 @@
               </div>
             </div>
             <div class="course bg-white rad-6 p-relative">
-              <span class="sale">10%</span>
               <img class="cover" src="../imgs/course-03.jpg" alt="" />
               <div class="p-20">
                 <h3 class="m-0">sweet chair</h3>
@@ -2419,6 +2469,7 @@
                   300
                 </span>
               </div>
+              <span class="sale">10%</span>
               <div class="overlay more-infos" style="display: none">
                 <div class="back" onclick="handlePopUp(false, 2)"></div>
                 <div class="content">
@@ -2541,9 +2592,14 @@
             "none";
         }
       }
+      // range value
+      const priceHolder = document.querySelector(".filters-holder .price");
+      priceHolder.lastElementChild.innerHTML = `0$ - ${priceHolder.children[1].value}$`;
+      priceHolder.addEventListener("change", (e) => {
+        priceHolder.lastElementChild.innerHTML = `0$ - ${e.target.value}$`;
+      });
       //show Product infos
       function showProductInfo(infos) {
-        console.log(infos);
         handlePopUp(true, 2);
         const {
           width,
@@ -2564,116 +2620,166 @@
         });
         holder.innerHTML = "";
         holder.innerHTML = `
-              <ul class="size">
-                <li>
-                  <h4>width</h4>
-                  <p>${width}</p>
-                </li>
-                <li>
-                  <h4>height</h4>
-                  <p>${height}</p>
-                </li>
-                <li>
-                  <h4>length</h4>
-                  <p>${length}</p>
-                </li>
-              </ul>
-              <ul class="detailed-infos">
-                <li>
-                  <h4>Category</h4>
-                  <p>${category}</p>
-                </li>
-                <li>
-                  <h4>Type</h4>
-                  <p>${type}</p>
-                </li>
-                <li>
-                  <h4>Style</h4>
-                  <p>${style}</p>
-                </li>
-                <li>
-                  <h4>Material</h4>
-                  <p>${material}</p>
-                </li>
-                <li>
-                  <h4>Design Type</h4>
-                  <p>${designType}</p>
-                </li>
-                <li>
-                  <h4>Colors</h4>
-                  <div class="colors">
-                    ${colorsElements}
-                  </div>
-                </li>
-              </ul>`;
+               <ul class="size">
+                 <li>
+                   <h4>width</h4>
+                   <p>${width}</p>
+                 </li>
+                 <li>
+                   <h4>height</h4>
+                   <p>${height}</p>
+                 </li>
+                 <li>
+                   <h4>length</h4>
+                   <p>${length}</p>
+                 </li>
+               </ul>
+               <ul class="detailed-infos">
+                 <li>
+                   <h4>Category</h4>
+                   <p>${category}</p>
+                 </li>
+                 <li>
+                   <h4>Type</h4>
+                   <p>${type}</p>
+                 </li>
+                 <li>
+                   <h4>Style</h4>
+                   <p>${style}</p>
+                 </li>
+                 <li>
+                   <h4>Material</h4>
+                   <p>${material}</p>
+                 </li>
+                 <li>
+                   <h4>Design Type</h4>
+                   <p>${designType}</p>
+                 </li>
+                 <li>
+                   <h4>Colors</h4>
+                   <div class="colors">
+                     ${colorsElements}
+                   </div>
+                 </li>
+               </ul>`;
       }
       // filters
-      /* const productInfos = document.querySelectorAll(
-        ".wrapper .courses-page .course .content"
-      );
-      const productName = document.querySelectorAll(
-        ".wrapper .courses-page .course h3"
-      );
-      const searchInput = document.querySelector(
-        ".wrapper .filters .search input"
-      );
-      const selects = document.querySelectorAll(".wrapper .filters select");
-      const productInfosHolder = document.querySelector(
-        ".wrapper .courses-page"
-      );
-      let filteredNames = [];
-      let filteredRoles = [];
-      function resetFilters() {
-        selects.forEach((select) => (select.value = "all"));
-        searchInput.value = "";
-        showCards();
-      }
-      function showCards(
-        cards = Array.from(productInfos),
-        cardsHolder = productInfosHolder
-      ) {
-        cardsHolder.innerHTML = "";
-        for (let i = 0; i < cards.length; i++) {
-          cardsHolder.appendChild(cards[i].parentElement);
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("name-search");
+        const categorySelect = document.getElementById("role-select");
+        const styleSelect = document.getElementById("style-filter");
+        const materialSelect = document.getElementById("material-filter");
+        const designTypeSelect = document.getElementById("design-type-filter");
+        const colorSelect = document.getElementById("color-filter");
+        const priceInput = document.querySelector('.price input[type="range"]');
+        const priceValue = document.querySelector(".price-filter-value");
+
+        const courses = document.querySelectorAll(".course");
+
+        function filterCourses() {
+          const searchText = searchInput.value.toLowerCase();
+          const selectedCategory = categorySelect.value;
+          const selectedStyle = styleSelect.value;
+          const selectedMaterial = materialSelect.value;
+          const selectedDesignType = designTypeSelect.value;
+          const selectedColor = colorSelect.value;
+          const maxPrice = parseInt(priceInput.value, 10);
+
+          courses.forEach((course) => {
+            const title = course.querySelector("h3").textContent.toLowerCase();
+            const price = parseInt(
+              course
+                .querySelector(".fa-dollar-sign")
+                .nextSibling.textContent.trim(),
+              10
+            );
+
+            const category = course
+              .querySelector(".detailed-infos li:nth-child(1) p")
+              .textContent.toLowerCase();
+            const type = course
+              .querySelector(".detailed-infos li:nth-child(2) p")
+              .textContent.toLowerCase();
+            const style = course
+              .querySelector(".detailed-infos li:nth-child(3) p")
+              .textContent.toLowerCase();
+            const material = course
+              .querySelector(".detailed-infos li:nth-child(4) p")
+              .textContent.toLowerCase();
+            const designType = course
+              .querySelector(".detailed-infos li:nth-child(5) p")
+              .textContent.toLowerCase();
+            const colors = Array.from(
+              course.querySelectorAll(".detailed-infos li:nth-child(6) .color")
+            ).map((c) => c.style.backgroundColor);
+
+            let isVisible = true;
+
+            if (searchText && !title.includes(searchText)) {
+              isVisible = false;
+            }
+
+            if (selectedCategory !== "all" && selectedCategory !== type) {
+              isVisible = false;
+            }
+
+            if (selectedStyle !== "all" && selectedStyle !== style) {
+              isVisible = false;
+            }
+
+            if (selectedMaterial !== "all" && selectedMaterial !== material) {
+              isVisible = false;
+            }
+
+            if (
+              selectedDesignType !== "all" &&
+              selectedDesignType !== designType
+            ) {
+              isVisible = false;
+            }
+
+            if (selectedColor !== "all" && !colors.includes(selectedColor)) {
+              isVisible = false;
+            }
+
+            if (price > maxPrice) {
+              isVisible = false;
+            }
+
+            course.style.display = isVisible ? "" : "none";
+          });
         }
-      }
-      let filteredInfos = [];
-      const filters = document.querySelector(
-        ".wrapper .filters .filters-holder"
-      );
-      function filterFunc(name, type, style, material, color, arr) {
-        if (name == "" && role == "all") {
-          return Array.from(arr);
-        } else if (role == "all") {
-          return Array.from(arr).filter((client) =>
-            client.children[1].innerHTML.toLowerCase().includes(name)
-          );
-        } else if (name == "") {
-          console.log(12);
-          return Array.from(arr).filter((client) =>
-            client.children[2].innerHTML.toLowerCase().includes(role)
-          );
-        }
-        return Array.from(arr)
-          .filter((client) =>
-            client.children[1].innerHTML.toLowerCase().includes(name)
-          )
-          .filter((client) =>
-            client.children[2].innerHTML.toLowerCase().includes(role)
-          );
-      }
-      filters.addEventListener("input", (e) => {
-        filteredInfos = filterFunc(
-          searchInput.value.toLowerCase(),
-          select[0].value.toLowerCase(),
-          select[1].value.toLowerCase(),
-          select[2].value.toLowerCase(),
-          select[3].value.toLowerCase()
-        );
-        showCards(filteredInfos, productInfosHolder);
+
+        // Show price value live
+        priceInput.addEventListener("input", () => {
+          priceValue.textContent = `$${priceInput.value}`;
+          filterCourses();
+        });
+
+        // Attach event listeners
+        searchInput.addEventListener("input", filterCourses);
+        categorySelect.addEventListener("change", filterCourses);
+        styleSelect.addEventListener("change", filterCourses);
+        materialSelect.addEventListener("change", filterCourses);
+        designTypeSelect.addEventListener("change", filterCourses);
+        colorSelect.addEventListener("change", filterCourses);
+
+        // Reset button logic
+        window.resetFilters = function () {
+          searchInput.value = "";
+          categorySelect.value = "all";
+          styleSelect.value = "all";
+          materialSelect.value = "all";
+          designTypeSelect.value = "all";
+          colorSelect.value = "all";
+          priceInput.value = priceInput.max;
+          priceValue.textContent = `$${priceInput.max}`;
+          filterCourses();
+        };
+
+        // Initialize
+        resetFilters();
       });
-     */
-      // function filter()
     </script>
   </body>
 </html>
