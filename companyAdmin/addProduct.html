@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap"
       rel="stylesheet"
     />
+
     <style>
       /* fontawesome icons*/
       /* framework.css */
@@ -318,6 +319,23 @@
         width: 250px;
         box-shadow: 0 0 10px #ddd;
       }
+      .sidebar > .holder {
+        position: fixed;
+        width: 179px;
+        height: 100vh;
+      }
+      @media (max-width: 991px) {
+        .sidebar > .holder {
+          position: fixed;
+          width: 165px;
+        }
+      }
+      @media (max-width: 991px) {
+        .sidebar > .holder {
+          position: fixed;
+          width: 32px;
+        }
+      }
       .sidebar .logo-holder h3 {
         margin: 0px;
       }
@@ -357,6 +375,7 @@
       }
       .sidebar ul li a:hover,
       .sidebar ul li a.active {
+        color: var(--blue-color);
         background-color: #c0c0c04d;
       }
       .sidebar ul li a span {
@@ -1238,6 +1257,22 @@
       .courses-page {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
+      .courses-page .course .info .title {
+        cursor: pointer;
+        background-color: var(--blue-alt-color);
+      }
+      .courses-page .course {
+        position: relative;
+      }
+      .courses-page .course .sale {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        background-color: floralwhite;
+        border-radius: 0px;
+        color: var(--blue-color);
+      }
       @media (max-width: 767px) {
         .courses-page {
           grid-template-columns: minmax(200px, 1fr);
@@ -1250,7 +1285,7 @@
         overflow: hidden;
       }
       .courses-page .course .cover {
-        max-width: 100%;
+        width: 100%;
       }
       .courses-page .course .instructor {
         position: absolute;
@@ -1550,12 +1585,17 @@
       .wrapper .content table td > img {
         width: 100px;
       }
-      .wrapper .content table .btns {
+      .wrapper .content table .btns,
+      .courses-page .btns {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      .wrapper .content table .btns img {
+      .courses-page .btns {
+        gap: 10px;
+      }
+      .wrapper .content table .btns img,
+      .courses-page .btns img {
         width: 15px;
         height: 15px;
       }
@@ -1564,7 +1604,8 @@
         height: 60px;
         border-radius: 8px;
       }
-      table tbody td .control-btn {
+      table tbody td .control-btn,
+      .courses-page .control-btn {
         width: 48px;
         height: 41px;
         padding: 9px 16px;
@@ -1573,23 +1614,35 @@
         background-color: transparent;
         cursor: pointer;
       }
-      table tbody td .control-btn.edit {
+      .courses-page .control-btn {
+        width: fit-content;
+        height: auto;
+        border: none;
+        padding: 0px;
+      }
+      table tbody td .control-btn.edit,
+      .courses-page .control-btn.edit {
         border-right: none;
         border-radius: 8px 0px 0px 8px;
       }
-      table tbody td .control-btn.delete {
+      table tbody td .control-btn.delete,
+      .courses-page .control-btn.delete {
         border-radius: 0px 8px 8px 0px;
       }
-      table tbody td .control-btn img {
+      table tbody td .control-btn img,
+      .courses-page .control-btn img {
         width: 15px;
         height: 15px;
         transition: 0.5s;
       }
-      table tbody td .control-btn i {
+      table tbody td .control-btn i,
+      .courses-page .control-btn i {
         transition: 0.5s;
       }
       table tbody td .control-btn:hover img,
-      table tbody td .control-btn:hover i {
+      table tbody td .control-btn:hover i,
+      .courses-page .control-btn:hover i,
+      .courses-page .control-btn:hover img {
         transform: scale(1.1);
       }
 
@@ -1614,6 +1667,203 @@
       .wrapper .cities-holder .box {
         background-color: white;
       }
+      /* css */
+      .filters,
+      .filters-holder {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        div {
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+      }
+      .filters {
+        margin: 20px 20px 0px;
+      }
+      .filters-holder {
+        gap: 30px;
+      }
+      .filters .search::before {
+        font-family: var(--fa-style-family-classic);
+        content: "\f002";
+        font-weight: 900;
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: var(--grey-color);
+      }
+      .filters .search input {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-left: 5px;
+        padding-left: 30px;
+        width: 160px;
+        transition: width 0.3s;
+      }
+      .filters .search input:focus {
+        width: 200px;
+      }
+      .filters .search input:focus::placeholder {
+        opacity: 0;
+      }
+      /* cards */
+      .wrapper .cities-holder .box {
+        width: calc(50% - 10px);
+        border: 1px solid #ccc;
+      }
+      .wrapper .cities-holder .box .btns {
+        margin-top: 10px;
+      }
+      .wrapper .cities-holder .box .control-btn {
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .wrapper .cities-holder .box .control-btn:hover {
+        transform: scale(1.1);
+      }
+      .wrapper .cities-holder .box button {
+        border: none;
+        background-color: transparent;
+        padding: 0px;
+      }
+      @media (max-width: 767px) {
+        .wrapper .cities-holder .box {
+          width: 100%;
+        }
+      }
+      /* overlay */
+      .overlay {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #00000080;
+        z-index: 100;
+      }
+      .overlay.more-infos {
+        background-color: transparent;
+      }
+      .overlay.more-infos .back {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #00000080;
+      }
+      .overlay.more-infos .content {
+        display: block;
+        height: auto;
+        ul {
+          margin: 0px;
+          p {
+            font-size: 14px;
+            color: var(--grey-color);
+          }
+          .colors {
+            display: flex;
+            gap: 10px;
+          }
+          p.color {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+          }
+        }
+        ul.size {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #eee;
+          margin-bottom: 30px;
+          padding-bottom: 10px;
+        }
+        ul.detailed-infos {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(1fr));
+          gap: 20px 30px;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h4,
+            p {
+              margin: 0px;
+            }
+          }
+        }
+      }
+      .overlay .content {
+        position: fixed;
+        padding: 40px;
+        min-width: 50%;
+        height: 321px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        border-radius: 20px;
+        background-color: white;
+      }
+      .overlay .content p {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .overlay .content .btns {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+      }
+      .overlay .content .btns .popup-btn {
+        width: 140px;
+        height: 50px;
+        border-radius: 4px;
+        font-size: 15px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .overlay .content .btns .popup-btn:hover {
+        transform: scale(0.95);
+      }
+      .overlay .content .btns .popup-btn.confirm {
+        background-color: var(--red-color);
+      }
+      .overlay .content .btns .popup-btn.cancel {
+        background-color: var(--blue-color);
+      }
+      .overlay.notification .content {
+        position: relative;
+      }
+      .overlay.notification img {
+        position: absolute;
+        top: -90px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 180px;
+      }
+      .overlay.notification .text {
+        margin-top: 20px;
+      }
+      .overlay.notification .content p {
+        font-size: 30px;
+      }
       /* controlledVica */
       .control-products p {
         margin-bottom: 41px;
@@ -1634,21 +1884,41 @@
         flex-direction: column;
         gap: 4px;
       }
+      .control-products form.info > div {
+        width: calc(50% - 20px);
+      }
+      .control-products form.info > div.colors {
+        width: 100%;
+        align-items: center;
+        select {
+          width: 50%;
+        }
+      }
       .control-products label {
         font-weight: 600;
         font-size: 14px;
         letter-spacing: -0.06px;
       }
-      .control-products form input:not(.btn) {
+      .control-products form textarea {
+        resize: none;
+        height: 75px;
+      }
+      .control-products form input:not(.btn),
+      .control-products form select,
+      .control-products form textarea {
         padding: 13px 19px;
         border-radius: 6px;
         border: 1px solid #d8d8d8;
         caret-color: var(--primary-color);
       }
-      .control-products form input::placeholder {
+      .control-products form input::placeholder,
+      .control-products form select::placeholder,
+      .control-products form textarea::placeholder {
         color: #a6a6a6;
       }
-      .control-products form input:focus {
+      .control-products form input:focus,
+      .control-products form select:focus,
+      .control-products form textarea:focus {
         outline: none;
       }
       .control-products .product-image {
@@ -1669,7 +1939,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px dashed #4880ff4d;
+        border: 2px dashed #1d322f80;
       }
       .control-products .product-image .upload img {
         width: 123px;
@@ -1713,196 +1983,173 @@
       .accordion .accordion-list {
         display: none;
       }
-      /* overlay */
-      .overlay {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background: #00000080;
+      /*  */
+      .btn.reset-btn {
+        background-color: #c0c0c0;
+        color: var(--blue-color);
+        border: none;
       }
-      .overlay .content {
-        padding: 40px;
-        min-width: 50%;
-        height: 321px;
+      .btn.reset-btn:hover {
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+          rgba(17, 17, 26, 0.1) 0px 8px 24px,
+          rgba(17, 17, 26, 0.1) 0px 16px 56px;
+      }
+      .friend {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 50px;
-        border-radius: 20px;
-        background-color: white;
+        justify-content: space-between;
       }
-      .overlay .content p {
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold;
-      }
-      .overlay .content .btns {
+      /*  */
+      .tabs {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
         justify-content: center;
-        gap: 26px;
+        align-items: center;
+        gap: 10px;
       }
-      .overlay .content .btns .popup-btn {
-        width: 140px;
-        height: 50px;
-        border-radius: 4px;
-        font-size: 15px;
-        color: white;
-        border: none;
+      .tabs li {
+        padding: 5px 10px;
         cursor: pointer;
-        transition: 0.5s;
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
-      .overlay .content .btns .popup-btn:hover {
-        transform: scale(0.95);
+      .tabs li:hover {
+        color: var(--blue-color);
       }
-      .overlay .content .btns .popup-btn.confirm {
-        background-color: #ef3826;
-      }
-      .overlay .content .btns .popup-btn.cancel {
-        background-color: #4880ff;
-      }
-      .overlay.notification .content {
-        position: relative;
-      }
-      .overlay.notification img {
-        position: absolute;
-        top: -90px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 180px;
-      }
-      .overlay.notification .text {
-        margin-top: 20px;
-      }
-      .overlay.notification .content p {
-        font-size: 30px;
+      .tabs li.active {
+        background-color: #c0c0c0;
+        color: var(--blue-color);
+        border-radius: 7px;
       }
     </style>
   </head>
   <body>
     <div class="page d-flex">
       <div class="sidebar p-20 p-relative">
-        <div class="logo-holder">
-          <img
-            style="width: 30px; height: 30px"
-            src="../imgs/logo.png"
-            alt=""
-          />
-          <h3 class="p-relative txt-c mt-0">ArchiLink</h3>
-        </div>
-        <ul>
-          <li>
-            <a
-              class="d-flex align-center fs-14 c-black rad-6 p-10"
-              href="index.html"
-            >
-              <i class="fa-regular fas fa-city"></i>
-              <span>City</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="d-flex align-center fs-14 c-black rad-6 p-10"
-              href="area.html"
-            >
-              <i class="fa-solid fas fa-chart-area fa-fw"></i>
-              <span>Area</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="active d-flex align-center fs-14 c-black rad-6 p-10"
-              href="settings.html"
-            >
-              <i class="fa-solid fa-gear fa-fw"></i>
-              <span>Settings</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="d-flex align-center fs-14 c-black rad-6 p-10"
-              href="client.html"
-            >
-              <i class="fa-regular fa-user fa-fw"></i>
-              <span>Client</span>
-            </a>
-          </li>
-          <li>
-            <a
-              class="d-flex align-center fs-14 c-black rad-6 p-10"
-              href="order.html"
-            >
-              <i class="fa-solid fas fa-shopping-basket fa-fw"></i>
-              <span>Order</span>
-            </a>
-          </li>
-          <li class="accordion">
-            <div
-              class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
-            >
-              <div class="holder">
-                <i class="far fa-trash-alt fa-fw"></i>
-                <span>Deleted Items</span>
-              </div>
-              <div
-                class="icon closed"
-                onclick="showNestedList(true,event,this)"
-              >
-                <i class="arrow fas fa-angle-down"></i>
-              </div>
-            </div>
-            <div class="accordion-list" style="padding-left: 10px">
+        <div class="holder">
+          <div class="logo-holder">
+            <img
+              style="width: 30px; height: 30px"
+              src="../imgs/logo.png"
+              alt=""
+            />
+            <h3 class="p-relative txt-c mt-0">ArchiLink</h3>
+          </div>
+          <ul>
+            <li>
               <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="trash.html"
-              >
-                <i class="far fa-clock fa-fw"></i>
-                <span>WorkTimes Trash</span>
-              </a>
-              <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="trash.html"
+                class="active d-flex align-center fs-14 c-black rad-6 p-10"
+                href="index.html"
               >
                 <i class="fa-regular fas fa-city"></i>
-                <span>Cities Trash</span>
+                <span>Product</span>
               </a>
+            </li>
+
+            <li class="accordion">
+              <div
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
+              >
+                <div class="holder">
+                  <i class="far fa-trash-alt fa-fw"></i>
+                  <span>Order</span>
+                </div>
+                <div
+                  class="icon closed"
+                  onclick="showNestedList(true,event,this)"
+                >
+                  <i class="arrow fas fa-angle-down"></i>
+                </div>
+              </div>
+              <div class="accordion-list" style="padding-left: 10px">
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="workTimesTrash.html"
+                >
+                  <i class="far fa-clock fa-fw"></i>
+                  <span>Shop</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="cityTrash.html"
+                >
+                  <i class="fa-regular fas fa-city"></i>
+                  <span>Customize</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="areaTrash.html"
+                >
+                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
+                  <span>Areas Trash</span>
+                </a>
+              </div>
+            </li>
+            <li>
               <a
                 class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="trash.html"
+                href="settings.html"
               >
-                <i class="fa-solid fas fa-chart-area fa-fw"></i>
-                <span>Areas Trash</span>
+                <i class="fa-solid fa-gear fa-fw"></i>
+                <span>Delivery</span>
               </a>
-            </div>
-          </li>
-        </ul>
-        <button
-          style="
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: none;
-            background-color: #c0c0c04d;
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 75%;
-          "
-          class="logout"
-        >
-          <i class="log-out-icon fas fa-power-off"></i>
-          <span>Logout</span>
-        </button>
+            </li>
+            <li class="accordion">
+              <div
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
+              >
+                <div class="holder">
+                  <i class="far fa-trash-alt fa-fw"></i>
+                  <span>Deleted Items</span>
+                </div>
+                <div
+                  class="icon closed"
+                  onclick="showNestedList(true,event,this)"
+                >
+                  <i class="arrow fas fa-angle-down"></i>
+                </div>
+              </div>
+              <div class="accordion-list" style="padding-left: 10px">
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="workTimesTrash.html"
+                >
+                  <i class="far fa-clock fa-fw"></i>
+                  <span>WorkTimes Trash</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="cityTrash.html"
+                >
+                  <i class="fa-regular fas fa-city"></i>
+                  <span>Cities Trash</span>
+                </a>
+                <a
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  href="areaTrash.html"
+                >
+                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
+                  <span>Areas Trash</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button
+            style="
+              padding: 10px 15px;
+              border-radius: 6px;
+              border: none;
+              color: white;
+              background-color: #1a1a1a;
+              position: absolute;
+              bottom: 10%;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100%;
+            "
+            class="logout"
+          >
+            <i class="log-out-icon fas fa-power-off"></i>
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
       <div class="content w-full">
         <!-- Start Head -->
@@ -1923,38 +2170,153 @@
         </div>
         <!-- End Head -->
         <div class="special-head">
-          <h1 class="p-relative">Edit WorkTime</h1>
+          <h1 class="p-relative">Add Product</h1>
+          <ul class="tabs">
+            <li class="active">General</li>
+            <li>Size</li>
+            <li>info</li>
+          </ul>
         </div>
-        <div class="wrapper">
-          <div class="control-products content">
-            <div class="holder">
-              <form>
-                <div class="from">
-                  <label for="day">Day</label>
+        <div class="wrapper" style="height: 100%">
+          <div class="control-products content" style="height: 100%">
+            <div class="holder general" style="height: 100%">
+              <form class="general">
+                <div class="title">
+                  <label for="title">Title</label>
+                  <input type="text" id="title" placeholder="ex: sweet sofa" />
+                </div>
+                <div class="price">
+                  <label for="price">Price</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    max="1000"
+                    id="price"
+                    placeholder="ex: 200$"
+                  />
+                </div>
+                <div class="amount">
+                  <label for="amount">Amount</label>
+                  <input type="number" id="amount" placeholder="ex: 4 items" />
+                </div>
+                <div class="time-to-make">
+                  <label for="time-to-make">Time to Make</label>
                   <input
                     type="text"
-                    id="day"
-                    placeholder="Day"
-                    value="Monday"
+                    id="time-to-make"
+                    placeholder="ex: 5 days"
                   />
                 </div>
-                <div class="from">
-                  <label for="from">From</label>
+                <div class="description">
+                  <label for="description">Description</label>
+                  <textarea
+                    placeholder="Descripe your product"
+                    id="description"
+                  ></textarea>
+                </div>
+                <input class="btn" type="submit" value="Save" />
+              </form>
+              <div
+                class="product-image"
+                style="height: 60.5%; margin-top: 22px"
+              >
+                <div class="upload">
+                  <input class="upload-input" type="file" multiple />
+                  <img src="../imgs/upload-icon.png" alt="product image" />
+                </div>
+              </div>
+            </div>
+            <div class="holder size" style="display: none">
+              <form class="size">
+                <div class="width">
+                  <label for="width">Width</label>
+                  <input type="number" id="width" placeholder="ex: 15m" />
+                </div>
+                <div class="height">
+                  <label for="height">Height</label>
+                  <input type="number" id="height" placeholder="ex: 15m" />
+                </div>
+                <div class="length">
+                  <label for="length">Length</label>
+                  <input type="number" id="length" placeholder="ex: 15m" />
+                </div>
+                <input class="btn" type="submit" value="Save" />
+              </form>
+            </div>
+            <div class="holder info" style="display: none">
+              <form
+                class="info"
+                style="
+                  width: 100%;
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 20px;
+                "
+              >
+                <div class="category">
+                  <label for="category">Category</label>
                   <input
-                    type="time"
-                    id="from"
-                    placeholder="From 00:00"
-                    value="08:00"
+                    type="text"
+                    id="category"
+                    placeholder="ex: Livingroom"
                   />
                 </div>
-                <div class="to">
-                  <label for="to">To</label>
+                <div class="type">
+                  <label for="type">Type</label>
+                  <input type="text" id="type" placeholder="ex: Sofa" />
+                </div>
+                <div class="style">
+                  <label for="style">Style</label>
+                  <input type="text" id="style" placeholder="ex: Modern" />
+                </div>
+                <div class="material">
+                  <label for="material">Material</label>
+                  <input type="text" id="material" placeholder="ex: wood" />
+                </div>
+                <div class="design-type">
+                  <label for="design-type">Design Type</label>
                   <input
-                    type="time"
-                    id="to"
-                    placeholder="To 00:00"
-                    value="22:00"
+                    type="text"
+                    id="design-type"
+                    placeholder="ex: Livingroom"
                   />
+                </div>
+                <div class="sale">
+                  <label for="sale">Sale</label>
+                  <input type="text" id="sale" placeholder="ex: 50%" />
+                </div>
+                <div class="colors">
+                  <label for="colors">Colors</label>
+                  <select
+                    class="colors filter-input"
+                    style="color: #888"
+                    id="color-filter"
+                  >
+                    <option value="plum" style="background-color: plum">
+                      plum
+                    </option>
+                    <option value="purple" style="background-color: purple">
+                      purple
+                    </option>
+                    <option value="pink" style="background-color: pink">
+                      pink
+                    </option>
+                    <option
+                      value="powderblue"
+                      style="background-color: powderblue"
+                    >
+                      powderblue
+                    </option>
+                    <option
+                      value="burlywood"
+                      style="background-color: burlywood"
+                    >
+                      burlywood
+                    </option>
+                  </select>
                 </div>
                 <input class="btn" type="submit" value="Save" />
               </form>
@@ -1993,20 +2355,44 @@
         if (isShow) overlay.style.display = "flex";
         else overlay.style.display = "none";
       }
+      const settingsOverlay = document.querySelectorAll(".overlays .overlay");
+      function handleSettingsPopUp(isShow, elementID) {
+        if (isShow) settingsOverlay[elementID].style.display = "flex";
+        else settingsOverlay[elementID].style.display = "none";
+      }
       // accordion
-      const accordion = document.querySelector(".accordion");
+      const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
         event.preventDefault();
         if (element.classList.contains("closed")) {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-up";
-          accordion.children[1].style.display = "block";
+          element.parentElement.parentElement.children[1].style.display =
+            "block";
         } else {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-down";
-          accordion.children[1].style.display = "none";
+          element.parentElement.parentElement.children[1].style.display =
+            "none";
         }
       }
+      // tabs enable
+      const tabsHolder = document.querySelector(".tabs");
+      const formsHolder = document.querySelector(".control-products");
+      tabsHolder.addEventListener("click", (e) => {
+        const currentTab = e.target?.innerHTML;
+        for (let i = 0; i < tabsHolder.children.length; i++) {
+          tabsHolder.children[i].classList.remove("active");
+        }
+        e.target.classList.add("active");
+        Array.from(formsHolder.children).forEach((formHolder) => {
+          if (formHolder.classList.contains(currentTab.toLowerCase())) {
+            formHolder.style.display = "flex";
+          } else {
+            formHolder.style.display = "none";
+          }
+        });
+      });
     </script>
   </body>
 </html>

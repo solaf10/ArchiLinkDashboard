@@ -374,6 +374,7 @@
       }
       .sidebar ul li a:hover,
       .sidebar ul li a.active {
+        color: var(--blue-color);
         background-color: #c0c0c04d;
       }
       .sidebar ul li a span {
@@ -2186,27 +2187,31 @@
                   id="color-filter"
                 >
                   <option value="all">All</option>
-                  <option value="plum" style="background-color: plum"></option>
-                  <option
-                    value="purple"
-                    style="background-color: purple"
-                  ></option>
-                  <option value="pink" style="background-color: pink"></option>
+                  <option value="plum" style="background-color: plum">
+                    plum
+                  </option>
+                  <option value="purple" style="background-color: purple">
+                    purple
+                  </option>
+                  <option value="pink" style="background-color: pink">
+                    pink
+                  </option>
                   <option
                     value="powderblue"
                     style="background-color: powderblue"
-                  ></option>
-                  <option
-                    value="burlywood"
-                    style="background-color: burlywood"
-                  ></option>
+                  >
+                    powderblue
+                  </option>
+                  <option value="burlywood" style="background-color: burlywood">
+                    burlywood
+                  </option>
                 </select>
               </div>
               <div class="price">
                 <label
                   for="price-filter"
                   style="color: var(--blue-color)"
-                  for="role-select"
+                  for="price"
                   >Price:</label
                 >
                 <input
@@ -2215,7 +2220,8 @@
                   min="0"
                   step="100"
                   max="1000"
-                  value="0"
+                  value="1000"
+                  id="price"
                 />
                 <span style="color: #888" class="price-filter-value"></span>
               </div>
@@ -2594,10 +2600,7 @@
       }
       // range value
       const priceHolder = document.querySelector(".filters-holder .price");
-      priceHolder.lastElementChild.innerHTML = `0$ - ${priceHolder.children[1].value}$`;
-      priceHolder.addEventListener("change", (e) => {
-        priceHolder.lastElementChild.innerHTML = `0$ - ${e.target.value}$`;
-      });
+      priceHolder.lastElementChild.innerHTML = `${priceHolder.children[1].value}$`;
       //show Product infos
       function showProductInfo(infos) {
         handlePopUp(true, 2);
