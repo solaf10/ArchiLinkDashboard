@@ -317,6 +317,11 @@
         position: relative;
         width: 250px;
         box-shadow: 0 0 10px #ddd;
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
       }
       .sidebar > .holder {
         position: fixed;
@@ -373,7 +378,7 @@
         margin-bottom: 5px;
       }
       .sidebar ul li a:hover,
-      .sidebar ul li a.active {
+      .sidebar ul li .active {
         color: var(--blue-color);
         background-color: #c0c0c04d;
       }
@@ -1885,6 +1890,10 @@
       .accordion .accordion-list {
         display: none;
       }
+      .accordion .accordion-list a.active,
+      .accordion .accordion-list a:hover {
+        background-color: transparent;
+      }
       /*  */
       .btn.reset-btn {
         background-color: #c0c0c0;
@@ -1944,7 +1953,7 @@
               <div class="accordion-list" style="padding-left: 10px">
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="workTimesTrash.html"
+                  href="shop.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
                   <span>Shop</span>
@@ -2230,6 +2239,7 @@
           </div>
           <div class="courses-page d-grid m-20 gap-20">
             <div class="course bg-white rad-6 p-relative">
+              <span class="sale">50%</span>
               <img class="cover" src="../imgs/course-01.jpg" alt="" />
               <div class="p-20">
                 <h3 class="m-0">Bed</h3>
@@ -2277,7 +2287,6 @@
                   165
                 </span>
               </div>
-              <span class="sale">50%</span>
               <div class="overlay more-infos" style="display: none">
                 <div class="back" onclick="handlePopUp(false, 0)"></div>
                 <div class="content">
@@ -2428,6 +2437,7 @@
               </div>
             </div>
             <div class="course bg-white rad-6 p-relative">
+              <span class="sale">10%</span>
               <img class="cover" src="../imgs/course-03.jpg" alt="" />
               <div class="p-20">
                 <h3 class="m-0">sweet chair</h3>
@@ -2475,7 +2485,6 @@
                   300
                 </span>
               </div>
-              <span class="sale">10%</span>
               <div class="overlay more-infos" style="display: none">
                 <div class="back" onclick="handlePopUp(false, 2)"></div>
                 <div class="content">
