@@ -1596,50 +1596,32 @@
         justify-content: space-between;
         gap: 6.8vw;
       }
-      .control-products .prev-form {
+      .control-products form {
         width: 50%;
       }
-      .control-products .prev-form > div {
+      .control-products form > div {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
         gap: 4px;
-      }
-      .control-products .prev-form.info > div {
-        width: calc(50% - 20px);
-      }
-      .control-products .prev-form.info > div.colors {
-        width: 100%;
-        align-items: center;
-        select {
-          width: 50%;
-        }
       }
       .control-products label {
         font-weight: 600;
         font-size: 14px;
         letter-spacing: -0.06px;
       }
-      .control-products .prev-form textarea {
-        resize: none;
-        height: 75px;
-      }
-      .control-products .prev-form input:not(.btn),
-      .control-products .prev-form select,
-      .control-products .prev-form textarea {
+      .control-products form input:not(.btn),
+      .control-products form select {
         padding: 13px 19px;
         border-radius: 6px;
         border: 1px solid #d8d8d8;
         caret-color: var(--primary-color);
       }
-      .control-products .prev-form input::placeholder,
-      .control-products .prev-form select::placeholder,
-      .control-products .prev-form textarea::placeholder {
+      .control-products form input::placeholder {
         color: #a6a6a6;
       }
-      .control-products .prev-form input:focus,
-      .control-products .prev-form select:focus,
-      .control-products .prev-form textarea:focus {
+      .control-products form input:focus,
+      .control-products form select {
         outline: none;
       }
       .control-products .product-image {
@@ -1660,7 +1642,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px dashed #1d322f80;
+        border: 2px dashed #4880ff4d;
       }
       .control-products .product-image .upload img {
         width: 123px;
@@ -1674,13 +1656,14 @@
           flex-wrap: wrap-reverse;
           gap: 40px;
         }
-        .control-products .holder .prev-form,
+        .control-products .holder form,
         .control-products .holder .product-image {
           width: 100%;
         }
         .control-products .holder .product-image {
         }
       }
+
       /* Product */
       .wrapper .content table td > img {
         width: 100px;
@@ -2006,25 +1989,6 @@
         flex-direction: column;
         justify-content: space-between;
       }
-      /*  */
-      .tabs {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-      }
-      .tabs li {
-        padding: 5px 10px;
-        cursor: pointer;
-      }
-      .tabs li:hover {
-        color: var(--blue-color);
-      }
-      .tabs li.active {
-        background-color: #c0c0c0;
-        color: var(--blue-color);
-        border-radius: 7px;
-      }
     </style>
   </head>
   <body>
@@ -2042,7 +2006,7 @@
           <ul>
             <li>
               <a
-                class="active d-flex align-center fs-14 c-black rad-6 p-10"
+                class="d-flex align-center fs-14 c-black rad-6 p-10"
                 href="index.html"
               >
                 <i class="fa-regular fas fa-city"></i>
@@ -2052,7 +2016,7 @@
 
             <li class="accordion">
               <div
-                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
+                class="active accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
               >
                 <div class="holder">
                   <i class="far fa-trash-alt fa-fw"></i>
@@ -2067,7 +2031,7 @@
               </div>
               <div class="accordion-list" style="padding-left: 10px">
                 <a
-                  class="d-flex align-center fs-14 c-black rad-6 p-10"
+                  class="active d-flex align-center fs-14 c-black rad-6 p-10"
                   href="shop.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
@@ -2147,7 +2111,7 @@
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head p-15 between-flex">
-          <p style="margin: 0px">WorkTimes</p>
+          <p style="margin: 0px">Delivery</p>
           <div class="icons d-flex align-center">
             <span
               style="cursor: pointer"
@@ -2163,160 +2127,24 @@
         </div>
         <!-- End Head -->
         <div class="special-head">
-          <h1 class="p-relative">Add Product</h1>
-          <ul class="tabs">
-            <li class="active">General</li>
-            <li>Size</li>
-            <li>info</li>
-          </ul>
+          <h1 class="p-relative">Manage Delivery</h1>
         </div>
-        <div class="wrapper" style="height: 100%">
-          <form class="control-products content" style="height: 100%">
-            <div class="holder general" style="height: 100%">
-              <div class="prev-form general">
-                <div class="title">
-                  <label for="title">Title</label>
-                  <input type="text" id="title" placeholder="ex: sweet sofa" />
-                </div>
-                <div class="price">
-                  <label for="price">Price</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="1"
-                    max="1000"
-                    id="price"
-                    placeholder="ex: 200$"
-                  />
-                </div>
-                <div class="amount">
-                  <label for="amount">Amount</label>
-                  <input type="number" id="amount" placeholder="ex: 4 items" />
-                </div>
-                <div class="time-to-make">
-                  <label for="time-to-make">Time to Make</label>
-                  <input
-                    type="text"
-                    id="time-to-make"
-                    placeholder="ex: 5 days"
-                  />
-                </div>
-                <div class="description">
-                  <label for="description">Description</label>
-                  <textarea
-                    placeholder="Descripe your product"
-                    id="description"
-                  ></textarea>
-                </div>
-                <div class="btns">
-                  <button class="btn" onclick="showNext(1,event)">Next</button>
-                </div>
-              </div>
-              <div
-                class="product-image"
-                style="height: 60.5%; margin-top: 22px"
-              >
-                <div class="upload">
-                  <input class="upload-input" type="file" multiple />
-                  <img src="../imgs/upload-icon.png" alt="product image" />
-                </div>
-              </div>
-            </div>
-            <div class="holder size" style="display: none">
-              <div class="prev-form size">
-                <div class="width">
-                  <label for="width">Width</label>
-                  <input type="text" id="width" placeholder="ex: 15m" />
-                </div>
-                <div class="height">
-                  <label for="height">Height</label>
-                  <input type="text" id="height" placeholder="ex: 15m" />
-                </div>
-                <div class="length">
-                  <label for="length">Length</label>
-                  <input type="text" id="length" placeholder="ex: 15m" />
-                </div>
-                <button class="btn" onclick="showNext(2,event)">Next</button>
-              </div>
-            </div>
-            <div class="holder info" style="display: none">
-              <div
-                class="prev-form info"
-                style="
-                  width: 100%;
-                  display: flex;
-                  flex-wrap: wrap;
-                  justify-content: center;
-                  align-items: center;
-                  gap: 20px;
-                "
-              >
-                <div class="category">
-                  <label for="category">Category</label>
-                  <input
-                    type="text"
-                    id="category"
-                    placeholder="ex: Livingroom"
-                  />
-                </div>
-                <div class="type">
-                  <label for="type">Type</label>
-                  <input type="text" id="type" placeholder="ex: Sofa" />
-                </div>
-                <div class="style">
-                  <label for="style">Style</label>
-                  <input type="text" id="style" placeholder="ex: Modern" />
-                </div>
-                <div class="material">
-                  <label for="material">Material</label>
-                  <input type="text" id="material" placeholder="ex: wood" />
-                </div>
-                <div class="design-type">
-                  <label for="design-type">Design Type</label>
-                  <input
-                    type="text"
-                    id="design-type"
-                    placeholder="ex: Livingroom"
-                  />
-                </div>
-                <div class="sale">
-                  <label for="sale">Sale</label>
-                  <input type="text" id="sale" placeholder="ex: 50%" />
-                </div>
-                <div class="colors">
-                  <label for="colors">Colors</label>
-                  <select
-                    class="colors filter-input"
-                    style="color: #888"
-                    id="color-filter"
-                  >
-                    <option value="plum" style="background-color: plum">
-                      plum
-                    </option>
-                    <option value="purple" style="background-color: purple">
-                      purple
-                    </option>
-                    <option value="pink" style="background-color: pink">
-                      pink
-                    </option>
-                    <option
-                      value="powderblue"
-                      style="background-color: powderblue"
-                    >
-                      powderblue
-                    </option>
-                    <option
-                      value="burlywood"
-                      style="background-color: burlywood"
-                    >
-                      burlywood
-                    </option>
+        <div class="wrapper">
+          <div class="control-products content">
+            <div class="holder">
+              <form>
+                <div class="name">
+                  <label for="delivery-name">Select Delivery:</label>
+                  <select name="delivery-name" id="delivery-name">
+                    <option value="jhonDoe">Jhon Doe</option>
+                    <option value="janeDoe">Jane Doe</option>
                   </select>
                 </div>
-                <input class="btn" type="submit" value="Save" />
-              </div>
+                <!-- <a class="btn" href="" type="submit">Set</a> -->
+                <input class="btn" type="submit" value="Set" />
+              </form>
             </div>
-          </form>
+          </div>
           <div class="overlay notification" style="display: none">
             <div class="content">
               <img src="../imgs/newOrder.png" alt="" />
@@ -2371,33 +2199,14 @@
             "none";
         }
       }
-      // tabs enable
-      const tabsHolder = document.querySelector(".tabs");
-      const formsHolder = document.querySelector(".control-products");
-      tabsHolder.addEventListener("click", (e) => {
-        if (e.target.tagName == "LI") {
-          const currentTab = e.target?.innerHTML;
-          for (let i = 0; i < tabsHolder.children.length; i++) {
-            tabsHolder.children[i].classList.remove("active");
-          }
-          e.target.classList.add("active");
-          Array.from(formsHolder.children).forEach((formHolder) => {
-            if (formHolder.classList.contains(currentTab.toLowerCase())) {
-              formHolder.style.display = "flex";
-            } else {
-              formHolder.style.display = "none";
-            }
-          });
-        }
-      });
-      // showNextTabContent
-      function showNext(nextElementIndex, e) {
+      //   handle submit
+      const submitBtn = document.querySelector("form input.btn");
+      const selectedDelivery = document.querySelector("form select ");
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
-        tabsHolder.children[nextElementIndex].classList.add("active");
-        tabsHolder.children[nextElementIndex - 1].classList.remove("active");
-        formsHolder.children[nextElementIndex].style.display = "flex";
-        formsHolder.children[nextElementIndex - 1].style.display = "none";
-      }
+        window.location.href = `shop.html${window.location.search}&delivery=${selectedDelivery.value}`;
+      });
     </script>
   </body>
 </html>

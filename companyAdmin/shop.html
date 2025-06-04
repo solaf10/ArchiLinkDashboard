@@ -1576,6 +1576,7 @@
         justify-content: space-between;
         padding: 10px;
         border: 1px solid #d5d5d5;
+        border-bottom: none;
       }
 
       .wrapper .content table tbody tr td::before {
@@ -1587,6 +1588,82 @@
       @media (max-width: 991px) {
       }
       @media (max-width: 991px) {
+      }
+      /* controlledVica */
+      .control-products p {
+        margin-bottom: 41px;
+        font-weight: 700;
+        font-size: 28px;
+      }
+      .control-products .holder {
+        display: flex;
+        justify-content: space-between;
+        gap: 6.8vw;
+      }
+      .control-products form {
+        width: 50%;
+      }
+      .control-products form > div {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .control-products label {
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: -0.06px;
+      }
+      .control-products form input:not(.btn) {
+        padding: 13px 19px;
+        border-radius: 6px;
+        border: 1px solid #d8d8d8;
+        caret-color: var(--primary-color);
+      }
+      .control-products form input::placeholder {
+        color: #a6a6a6;
+      }
+      .control-products form input:focus {
+        outline: none;
+      }
+      .control-products .product-image {
+        position: relative;
+        width: 50%;
+        height: 218px;
+      }
+      .control-products .product-image input {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .control-products .product-image .upload {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px dashed #4880ff4d;
+      }
+      .control-products .product-image .upload img {
+        width: 123px;
+        height: 113px;
+      }
+      .control-products .loader-container {
+        height: calc(100vh - 80px);
+      }
+      @media (max-width: 991px) {
+        .control-products .holder {
+          flex-wrap: wrap-reverse;
+          gap: 40px;
+        }
+        .control-products .holder form,
+        .control-products .holder .product-image {
+          width: 100%;
+        }
+        .control-products .holder .product-image {
+        }
       }
       /* Product */
       .wrapper .content table td > img {
@@ -1674,6 +1751,7 @@
       .wrapper .cities-holder .box {
         background-color: white;
       }
+
       /* css */
       .filters,
       .filters-holder {
@@ -1868,13 +1946,33 @@
       .overlay.notification .text {
         margin-top: 20px;
       }
-      .overlay .content p,
-      .overlay .content label {
+      .overlay .content p {
         font-size: 30px;
       }
-      .overlay.delivery-name .content {
+      .overlay.select-delivery .content {
         justify-content: flex-start;
         align-items: flex-start;
+        height: auto;
+        .text {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 30px;
+        }
+        form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          label {
+            font-size: 24px;
+          }
+          select {
+            height: 50px;
+          }
+        }
       }
       /* accordion */
       .accordion .accordion-holder {
@@ -1962,7 +2060,7 @@
                   <span>Order</span>
                 </div>
                 <div
-                  class="icon closed"
+                  class="icon closed cur-active"
                   onclick="showNestedList(true,event,this)"
                 >
                   <i class="arrow fas fa-angle-down"></i>
@@ -2012,24 +2110,17 @@
               <div class="accordion-list" style="padding-left: 10px">
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="workTimesTrash.html"
+                  href="productTrash.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
-                  <span>WorkTimes Trash</span>
+                  <span>Product Trash</span>
                 </a>
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="cityTrash.html"
+                  href="deliveryTrash.html"
                 >
                   <i class="fa-regular fas fa-city"></i>
-                  <span>Cities Trash</span>
-                </a>
-                <a
-                  class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="areaTrash.html"
-                >
-                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
-                  <span>Areas Trash</span>
+                  <span>Delivery Trash</span>
                 </a>
               </div>
             </li>
@@ -2076,6 +2167,43 @@
           <h1 class="p-relative">Manage Shop</h1>
         </div>
         <div class="wrapper d-grid gap-20">
+          <div class="filters" style="justify-content: space-between">
+            <div class="filters-holder">
+              <label style="color: var(--blue-color)" for="area-search"
+                >Delivery Name:</label
+              >
+              <div class="search p-relative">
+                <input
+                  id="area-search"
+                  class="p-10"
+                  type="search"
+                  placeholder="Type An Area"
+                />
+              </div>
+              <label style="color: var(--blue-color)" for="cities-select"
+                >Status:</label
+              >
+              <select
+                id="cities-select"
+                style="
+                  padding: 5px;
+                  border: 1px solid #ccc;
+                  color: #888;
+                  background-color: white;
+                  box-shadow: none;
+                "
+                class="btn"
+                name="area"
+                onchange=""
+              >
+                <option value="All">All</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Pending">Pending</option>
+                <option value="Not Delivered">Not Delivered</option>
+              </select>
+            </div>
+            <div class="btn reset-btn" onclick="resetFilters()">Reset</div>
+          </div>
           <div class="show-products content">
             <table>
               <thead>
@@ -2095,9 +2223,7 @@
                   <td data-label="Amount">2</td>
                   <td data-label="Price">100$</td>
                   <td data-label="Address">Homs, Syria</td>
-                  <td style="color: var(--green-color)" data-label="Status">
-                    Delivered
-                  </td>
+                  <td data-label="Status">Delivered</td>
                   <td style="border-bottom: none" data-label="Delivery">
                     Jhon Doe
                   </td>
@@ -2132,20 +2258,8 @@
                   <td data-label="Amount">3</td>
                   <td data-label="Price">150$</td>
                   <td data-label="Address">Hama, Syria</td>
-                  <td style="color: var(--red-color)" data-label="Status">
-                    Not Delivered
-                  </td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    <span
-                      style="
-                        color: #888;
-                        text-decoration: underline;
-                        cursor: pointer;
-                      "
-                    >
-                      Choose
-                    </span>
-                  </td>
+                  <td data-label="Status">Not Delivered</td>
+                  <td style="border-bottom: none" data-label="Delivery"></td>
                   <td
                     style="
                       background-color: var(--blue-alt-color);
@@ -2177,9 +2291,7 @@
                   <td data-label="Amount">2</td>
                   <td data-label="Price">100$</td>
                   <td data-label="Address">Homs, Syria</td>
-                  <td style="color: var(--green-color)" data-label="Status">
-                    Delivered
-                  </td>
+                  <td data-label="Status">Delivered</td>
                   <td style="border-bottom: none" data-label="Delivery">
                     Jhon Doe
                   </td>
@@ -2214,20 +2326,8 @@
                   <td data-label="Amount">2</td>
                   <td data-label="Price">100$</td>
                   <td data-label="Address">Homs, Syria</td>
-                  <td style="color: var(--red-color)" data-label="Status">
-                    Not Delivered
-                  </td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    <span
-                      style="
-                        color: #888;
-                        text-decoration: underline;
-                        cursor: pointer;
-                      "
-                    >
-                      Choose
-                    </span>
-                  </td>
+                  <td data-label="Status">Not Delivered</td>
+                  <td style="border-bottom: none" data-label="Delivery"></td>
                   <td
                     style="
                       background-color: var(--blue-alt-color);
@@ -2242,11 +2342,11 @@
               </tbody>
             </table>
           </div>
-          <div class="overlay select-delivery" style="display: none">
+          <!-- <div class="overlay select-delivery" style="display: none">
             <div class="content">
               <div class="text">
-                <label for="delivery-name">Select Delivery:</label>
                 <form>
+                  <label for="delivery-name">Select Delivery:</label>
                   <select name="delivery-name" id="delivery-name">
                     <option value="jhonDoe">Jhon Doe</option>
                     <option value="janeDoe">Jane Doe</option>
@@ -2269,7 +2369,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="overlay notification" style="display: none">
             <div class="content">
               <img src="../imgs/newOrder.png" alt="" />
@@ -2306,7 +2406,7 @@
       // accordion
       const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         if (element.classList.contains("closed")) {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-up";
@@ -2319,6 +2419,122 @@
             "none";
         }
       }
+      showNestedList(true, null, document.querySelector(".icon.cur-active"));
+      // deliveryName
+      const statusArr = document.querySelectorAll('[data-label="Status"]');
+      const deliveryName = document.querySelectorAll('[data-label="Delivery"]');
+      const selectedDelivery = document.querySelector(
+        ".select-delivery select"
+      );
+
+      // set The DeliveryName
+      let orderInfos, orderID, delivery;
+      if (window.location.search) {
+        orderInfos = window.location.search.split("&");
+        orderID = +orderInfos[0].split("=")[1];
+        delivery = orderInfos[1].split("=")[1];
+        statusArr[orderID].innerHTML = "Pending";
+        controlStatus();
+      }
+      function controlStatus() {
+        statusArr.forEach((status, i) => {
+          if (status.innerHTML.trim().toLowerCase() == "delivered") {
+            status.style.color = "var(--green-color)";
+          } else if (status.innerHTML.trim().toLowerCase() == "pending") {
+            status.style.color = "var(--orange-color)";
+            deliveryName[i].innerHTML = delivery;
+          } else {
+            status.style.color = "var(--red-color)";
+            deliveryName[
+              i
+            ].innerHTML = `<a href="chooseDelivery.html?orderID=${i}"
+                      style="
+                        color: var(--blue-color);
+                        text-decoration: underline;
+                        cursor: pointer;
+                      "
+                    >
+                      Choose
+                    </a>`;
+          }
+        });
+      }
+      controlStatus();
+
+      // filters
+      const clients = document.querySelectorAll(".wrapper table");
+      const searchInput = document.querySelector(
+        ".wrapper .filters .search input"
+      );
+      const roleSelect = document.querySelector(".wrapper .filters select");
+      const clientsHolder = document.querySelector(".wrapper .show-products");
+      let filteredNames = [];
+      let filteredRoles = [];
+      function resetFilters() {
+        roleSelect.value = "All";
+        searchInput.value = "";
+        showCards();
+      }
+      function showCards(
+        cards = Array.from(clients),
+        cardsHolder = clientsHolder
+      ) {
+        cardsHolder.innerHTML = "";
+        for (let i = 0; i < cards.length; i++) {
+          cardsHolder.appendChild(cards[i]);
+        }
+      }
+      let filteredInfos = [];
+      const filters = document.querySelector(
+        ".wrapper .filters .filters-holder"
+      );
+      function filterFunc(name, role) {
+        if (name == "" && role == "all") {
+          return Array.from(clients);
+        } else if (role == "all") {
+          return Array.from(clients).filter(
+            (client) =>
+              client
+                .querySelector("td[data-label='Delivery']")
+                .innerHTML.toLowerCase()
+                .includes(name) &&
+              client
+                .querySelector("td[data-label='Delivery']")
+                .innerHTML.charAt(0) != "<"
+          );
+        } else if (name == "") {
+          return Array.from(clients).filter(
+            (client) =>
+              client
+                .querySelector("td[data-label='Status']")
+                .innerHTML.toLowerCase() == role
+          );
+        }
+        return Array.from(clients)
+          .filter(
+            (client) =>
+              client
+                .querySelector("td[data-label='Delivery']")
+                .innerHTML.toLowerCase()
+                .includes(name) &&
+              client
+                .querySelector("td[data-label='Delivery']")
+                .innerHTML.charAt(0) != "<"
+          )
+          .filter(
+            (client) =>
+              client
+                .querySelector("td[data-label='Status']")
+                .innerHTML.toLowerCase() == role
+          );
+      }
+      filters.addEventListener("input", (e) => {
+        filteredInfos = filterFunc(
+          searchInput.value.toLowerCase(),
+          roleSelect.value.toLowerCase()
+        );
+        showCards(filteredInfos, clientsHolder);
+      });
     </script>
   </body>
 </html>

@@ -1963,7 +1963,7 @@
                   <span>Order</span>
                 </div>
                 <div
-                  class="icon closed"
+                  class="icon closed cur-active"
                   onclick="showNestedList(true,event,this)"
                 >
                   <i class="arrow fas fa-angle-down"></i>
@@ -2013,24 +2013,17 @@
               <div class="accordion-list" style="padding-left: 10px">
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="workTimesTrash.html"
+                  href="productTrash.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
-                  <span>WorkTimes Trash</span>
+                  <span>Product Trash</span>
                 </a>
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="cityTrash.html"
+                  href="deliveryTrash.html"
                 >
                   <i class="fa-regular fas fa-city"></i>
-                  <span>Cities Trash</span>
-                </a>
-                <a
-                  class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="areaTrash.html"
-                >
-                  <i class="fa-solid fas fa-chart-area fa-fw"></i>
-                  <span>Areas Trash</span>
+                  <span>Delivery Trash</span>
                 </a>
               </div>
             </li>
@@ -2205,7 +2198,7 @@
       // accordion
       const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         if (element.classList.contains("closed")) {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-up";
@@ -2218,6 +2211,7 @@
             "none";
         }
       }
+      showNestedList(true, null, document.querySelector(".icon.cur-active"));
       // status
       const rows = document.querySelectorAll(".wrapper table tbody tr");
       function sendFinishedOrders() {
