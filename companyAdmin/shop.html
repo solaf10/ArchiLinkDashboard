@@ -1557,6 +1557,7 @@
       }
       .wrapper .content table {
         border: none;
+        margin-bottom: 30px;
         tr:last-child {
           margin-bottom: 0px;
         }
@@ -1867,8 +1868,13 @@
       .overlay.notification .text {
         margin-top: 20px;
       }
-      .overlay.notification .content p {
+      .overlay .content p,
+      .overlay .content label {
         font-size: 30px;
+      }
+      .overlay.delivery-name .content {
+        justify-content: flex-start;
+        align-items: flex-start;
       }
       /* accordion */
       .accordion .accordion-holder {
@@ -1911,6 +1917,16 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+      }
+      /*  */
+      table td {
+        color: #888;
+      }
+      table td::before {
+        color: black;
+      }
+      table td:last-child:before {
+        color: white;
       }
     </style>
   </head>
@@ -1962,7 +1978,7 @@
                 </a>
                 <a
                   class="d-flex align-center fs-14 c-black rad-6 p-10"
-                  href="cityTrash.html"
+                  href="customize.html"
                 >
                   <i class="fa-regular fas fa-city"></i>
                   <span>Customize</span>
@@ -1972,7 +1988,7 @@
             <li>
               <a
                 class="d-flex align-center fs-14 c-black rad-6 p-10"
-                href="settings.html"
+                href="delivery.html"
               >
                 <i class="fa-solid fa-gear fa-fw"></i>
                 <span>Delivery</span>
@@ -2046,7 +2062,7 @@
             <span
               style="cursor: pointer"
               class="notification p-relative"
-              onclick="handlePopUp(true,1)"
+              onclick="handlePopUp(true,0)"
             >
               <i class="fa-regular fa-bell fa-lg"></i>
             </span>
@@ -2057,50 +2073,200 @@
         </div>
         <!-- End Head -->
         <div class="special-head">
-          <h1 class="p-relative">Manage WorkTimes</h1>
-          <a href="addWorkTime.html" class="btn">+ Add WorkTime</a>
+          <h1 class="p-relative">Manage Shop</h1>
         </div>
         <div class="wrapper d-grid gap-20">
           <div class="show-products content">
             <table>
               <thead>
                 <tr>
-                  <th>Day</th>
-                  <th>From</th>
-                  <th>To</th>
-                  <th>Action</th>
+                  <th>Product Code</th>
+                  <th>Amount</th>
+                  <th>Price</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Delivery</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr scope="row">
-                  <td data-label="Day">sunday</td>
-                  <td data-label="From">8:00AM</td>
-                  <td data-label="To">10:00PM</td>
-                  <td data-label="Action">
-                    <div class="btns">
-                      <a href="editWorkTime.html" class="control-btn edit">
-                        <img src="../imgs/pencil-write.png" alt="edit" />
-                      </a>
-                      <button
-                        class="control-btn delete"
-                        onclick="handlePopUp(true,0)"
-                      >
-                        <img src="../imgs/bin.png" alt="del" />
-                      </button>
-                    </div>
+                  <td data-label="Product Code">1</td>
+                  <td data-label="Amount">2</td>
+                  <td data-label="Price">100$</td>
+                  <td data-label="Address">Homs, Syria</td>
+                  <td style="color: var(--green-color)" data-label="Status">
+                    Delivered
+                  </td>
+                  <td style="border-bottom: none" data-label="Delivery">
+                    Jhon Doe
+                  </td>
+                  <td
+                    style="
+                      background-color: var(--blue-alt-color);
+                      color: white;
+                      border-radius: 0px 0px 8px 8px;
+                    "
+                    data-label="Total"
+                  >
+                    200$
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Code</th>
+                  <th>Amount</th>
+                  <th>Price</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Delivery</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr scope="row">
+                  <td data-label="Product Code">1</td>
+                  <td data-label="Amount">3</td>
+                  <td data-label="Price">150$</td>
+                  <td data-label="Address">Hama, Syria</td>
+                  <td style="color: var(--red-color)" data-label="Status">
+                    Not Delivered
+                  </td>
+                  <td style="border-bottom: none" data-label="Delivery">
+                    <span
+                      style="
+                        color: #888;
+                        text-decoration: underline;
+                        cursor: pointer;
+                      "
+                    >
+                      Choose
+                    </span>
+                  </td>
+                  <td
+                    style="
+                      background-color: var(--blue-alt-color);
+                      color: white;
+                      border-radius: 0px 0px 8px 8px;
+                    "
+                    data-label="Total"
+                  >
+                    $450
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Code</th>
+                  <th>Amount</th>
+                  <th>Price</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Delivery</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr scope="row">
+                  <td data-label="Product Code">1</td>
+                  <td data-label="Amount">2</td>
+                  <td data-label="Price">100$</td>
+                  <td data-label="Address">Homs, Syria</td>
+                  <td style="color: var(--green-color)" data-label="Status">
+                    Delivered
+                  </td>
+                  <td style="border-bottom: none" data-label="Delivery">
+                    Jhon Doe
+                  </td>
+                  <td
+                    style="
+                      background-color: var(--blue-alt-color);
+                      color: white;
+                      border-radius: 0px 0px 8px 8px;
+                    "
+                    data-label="Total"
+                  >
+                    $200
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product Code</th>
+                  <th>Amount</th>
+                  <th>Price</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Delivery</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr scope="row">
+                  <td data-label="Product Code">1</td>
+                  <td data-label="Amount">2</td>
+                  <td data-label="Price">100$</td>
+                  <td data-label="Address">Homs, Syria</td>
+                  <td style="color: var(--red-color)" data-label="Status">
+                    Not Delivered
+                  </td>
+                  <td style="border-bottom: none" data-label="Delivery">
+                    <span
+                      style="
+                        color: #888;
+                        text-decoration: underline;
+                        cursor: pointer;
+                      "
+                    >
+                      Choose
+                    </span>
+                  </td>
+                  <td
+                    style="
+                      background-color: var(--blue-alt-color);
+                      color: white;
+                      border-radius: 0px 0px 8px 8px;
+                    "
+                    data-label="Total"
+                  >
+                    $200
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="overlay" style="display: none">
+          <div class="overlay select-delivery" style="display: none">
             <div class="content">
-              <p>Are You Sure You Want To Delete It?</p>
-              <div class="btns">
-                <button class="confirm popup-btn">Yes</button>
-                <button class="cancel popup-btn" onclick="handlePopUp(false,0)">
-                  No
-                </button>
+              <div class="text">
+                <label for="delivery-name">Select Delivery:</label>
+                <form>
+                  <select name="delivery-name" id="delivery-name">
+                    <option value="jhonDoe">Jhon Doe</option>
+                    <option value="janeDoe">Jane Doe</option>
+                  </select>
+                </form>
+                <div class="btns">
+                  <button
+                    class="confirm popup-btn"
+                    style="background-color: var(--blue-alt-color)"
+                  >
+                    Select
+                  </button>
+                  <button
+                    class="cancel popup-btn"
+                    style="background-color: var(--red-color)"
+                    onclick="handlePopUp(false,0)"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2120,7 +2286,7 @@
                   <button
                     class="cancel popup-btn"
                     style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,1)"
+                    onclick="handlePopUp(false,0)"
                   >
                     Dismiss
                   </button>
