@@ -1548,46 +1548,42 @@
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
         background-color: var(--blue-alt-color);
       }
-      .page aside .header {
-        justify-content: space-between;
+
+      @media (max-width: 991px) {
       }
-      .page aside {
-        position: absolute;
-        left: -100%;
-      }
-      .wrapper .content table {
-        border: none;
-        margin-bottom: 30px;
-        tr:last-child {
-          margin-bottom: 0px;
+      @media (max-width: 991px) {
+        .page aside .header {
+          justify-content: space-between;
         }
-      }
-      .wrapper .content table thead {
-        display: none;
-      }
+        .page aside {
+          position: absolute;
+          left: -100%;
+        }
+        .wrapper .content table {
+          border: none;
+          background-color: transparent;
+        }
+        .wrapper .content table thead {
+          display: none;
+        }
 
-      .wrapper .content table tbody tr {
-        display: block;
-        margin-bottom: 30px;
-      }
+        .wrapper .content table tbody tr {
+          display: block;
+          margin-bottom: 30px;
+        }
 
-      .wrapper .content table tbody tr td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border: 1px solid #d5d5d5;
-        border-bottom: none;
-      }
+        .wrapper .content table tbody tr td {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          border: 1px solid #d5d5d5;
+        }
 
-      .wrapper .content table tbody tr td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        margin-right: 10px;
-      }
-
-      @media (max-width: 991px) {
-      }
-      @media (max-width: 991px) {
+        .wrapper .content table tbody tr td::before {
+          content: attr(data-label);
+          font-weight: bold;
+          margin-right: 10px;
+        }
       }
       /* controlledVica */
       .control-products p {
@@ -1600,30 +1596,50 @@
         justify-content: space-between;
         gap: 6.8vw;
       }
-      .control-products form {
+      .control-products .prev-form {
         width: 50%;
       }
-      .control-products form > div {
+      .control-products .prev-form > div {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
         gap: 4px;
+      }
+      .control-products .prev-form.info > div {
+        width: calc(50% - 20px);
+      }
+      .control-products .prev-form.info > div.colors {
+        width: 100%;
+        align-items: center;
+        select {
+          width: 50%;
+        }
       }
       .control-products label {
         font-weight: 600;
         font-size: 14px;
         letter-spacing: -0.06px;
       }
-      .control-products form input:not(.btn) {
+      .control-products .prev-form textarea {
+        resize: none;
+        height: 75px;
+      }
+      .control-products .prev-form input:not(.btn),
+      .control-products .prev-form select,
+      .control-products .prev-form textarea {
         padding: 13px 19px;
         border-radius: 6px;
         border: 1px solid #d8d8d8;
         caret-color: var(--primary-color);
       }
-      .control-products form input::placeholder {
+      .control-products .prev-form input::placeholder,
+      .control-products .prev-form select::placeholder,
+      .control-products .prev-form textarea::placeholder {
         color: #a6a6a6;
       }
-      .control-products form input:focus {
+      .control-products .prev-form input:focus,
+      .control-products .prev-form select:focus,
+      .control-products .prev-form textarea:focus {
         outline: none;
       }
       .control-products .product-image {
@@ -1644,7 +1660,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px dashed #4880ff4d;
+        border: 2px dashed #1d322f80;
       }
       .control-products .product-image .upload img {
         width: 123px;
@@ -1658,7 +1674,7 @@
           flex-wrap: wrap-reverse;
           gap: 40px;
         }
-        .control-products .holder form,
+        .control-products .holder .prev-form,
         .control-products .holder .product-image {
           width: 100%;
         }
@@ -1751,7 +1767,6 @@
       .wrapper .cities-holder .box {
         background-color: white;
       }
-
       /* css */
       .filters,
       .filters-holder {
@@ -1946,33 +1961,8 @@
       .overlay.notification .text {
         margin-top: 20px;
       }
-      .overlay .content p {
+      .overlay.notification .content p {
         font-size: 30px;
-      }
-      .overlay.select-delivery .content {
-        justify-content: flex-start;
-        align-items: flex-start;
-        height: auto;
-        .text {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 30px;
-        }
-        form {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          label {
-            font-size: 24px;
-          }
-          select {
-            height: 50px;
-          }
-        }
       }
       /* accordion */
       .accordion .accordion-holder {
@@ -2017,14 +2007,23 @@
         justify-content: space-between;
       }
       /*  */
-      table td {
-        color: #888;
+      .tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
       }
-      table td::before {
-        color: black;
+      .tabs li {
+        padding: 5px 10px;
+        cursor: pointer;
       }
-      table td:last-child:before {
-        color: white;
+      .tabs li:hover {
+        color: var(--blue-color);
+      }
+      .tabs li.active {
+        background-color: #c0c0c0;
+        color: var(--blue-color);
+        border-radius: 7px;
       }
     </style>
   </head>
@@ -2043,7 +2042,7 @@
           <ul>
             <li>
               <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
+                class="active d-flex align-center fs-14 c-black rad-6 p-10"
                 href="index.html"
               >
                 <i class="fa-regular fas fa-city"></i>
@@ -2053,14 +2052,14 @@
 
             <li class="accordion">
               <div
-                class="active accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
               >
                 <div class="holder">
                   <i class="far fa-trash-alt fa-fw"></i>
                   <span>Order</span>
                 </div>
                 <div
-                  class="icon closed cur-active"
+                  class="icon closed"
                   onclick="showNestedList(true,event,this)"
                 >
                   <i class="arrow fas fa-angle-down"></i>
@@ -2068,7 +2067,7 @@
               </div>
               <div class="accordion-list" style="padding-left: 10px">
                 <a
-                  class="active d-flex align-center fs-14 c-black rad-6 p-10"
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
                   href="shop.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
@@ -2153,7 +2152,7 @@
             <span
               style="cursor: pointer"
               class="notification p-relative"
-              onclick="handlePopUp(true,0)"
+              onclick="handlePopUp(true,1)"
             >
               <i class="fa-regular fa-bell fa-lg"></i>
             </span>
@@ -2164,212 +2163,212 @@
         </div>
         <!-- End Head -->
         <div class="special-head">
-          <h1 class="p-relative">Manage Shop</h1>
+          <h1 class="p-relative">Add Product</h1>
+          <ul class="tabs">
+            <li class="active">General</li>
+            <li>Size</li>
+            <li>info</li>
+          </ul>
         </div>
-        <div class="wrapper d-grid gap-20">
-          <div class="filters" style="justify-content: space-between">
-            <div class="filters-holder">
-              <label style="color: var(--blue-color)" for="area-search"
-                >Delivery Name:</label
-              >
-              <div class="search p-relative">
-                <input
-                  id="area-search"
-                  class="p-10"
-                  type="search"
-                  placeholder="Type An Area"
-                />
-              </div>
-              <label style="color: var(--blue-color)" for="cities-select"
-                >Status:</label
-              >
-              <select
-                id="cities-select"
-                style="
-                  padding: 5px;
-                  border: 1px solid #ccc;
-                  color: #888;
-                  background-color: white;
-                  box-shadow: none;
-                "
-                class="btn"
-                name="area"
-                onchange=""
-              >
-                <option value="All">All</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Pending">Pending</option>
-                <option value="Not Delivered">Not Delivered</option>
-              </select>
-            </div>
-            <div class="btn reset-btn" onclick="resetFilters()">Reset</div>
-          </div>
-          <div class="show-products content">
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    Jhon Doe
-                  </td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
+        <div class="wrapper" style="height: 100%">
+          <form class="control-products content" style="height: 100%">
+            <div class="holder general" style="height: 100%">
+              <div class="prev-form general">
+                <div class="title">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    placeholder="ex: sweet sofa"
+                    name="title"
+                    value="sweet sofa"
+                  />
+                </div>
+                <div class="price">
+                  <label for="price">Price</label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    max="1000"
+                    id="price"
+                    placeholder="ex: 200$"
+                    name="price"
+                    value="200"
+                  />
+                </div>
+                <div class="amount">
+                  <label for="amount">Amount</label>
+                  <input
+                    type="number"
+                    id="amount"
+                    placeholder="ex: 4 items"
+                    name="amount"
+                    value="5"
+                  />
+                </div>
+                <div class="time-to-make">
+                  <label for="time-to-make">Time to Make</label>
+                  <input
+                    type="text"
+                    id="time-to-make"
+                    placeholder="ex: 5 days"
+                    name="time-to-make"
+                    value="5days"
+                  />
+                </div>
+                <div class="description">
+                  <label for="description">Description</label>
+                  <textarea
+                    placeholder="Descripe your product"
+                    id="description"
+                    name="description"
                   >
-                    200$
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">3</td>
-                  <td data-label="Price">150$</td>
-                  <td data-label="Address">Hama, Syria</td>
-                  <td data-label="Status">Not Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery"></td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
+soft sofa</textarea
                   >
-                    $450
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    Jhon Doe
-                  </td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    $200
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Not Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery"></td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    $200
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- <div class="overlay select-delivery" style="display: none">
-            <div class="content">
-              <div class="text">
-                <form>
-                  <label for="delivery-name">Select Delivery:</label>
-                  <select name="delivery-name" id="delivery-name">
-                    <option value="jhonDoe">Jhon Doe</option>
-                    <option value="janeDoe">Jane Doe</option>
-                  </select>
-                </form>
+                </div>
                 <div class="btns">
-                  <button
-                    class="confirm popup-btn"
-                    style="background-color: var(--blue-alt-color)"
-                  >
-                    Select
-                  </button>
-                  <button
-                    class="cancel popup-btn"
-                    style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,0)"
-                  >
-                    Cancel
-                  </button>
+                  <button class="btn" onclick="showNext(1,event)">Next</button>
+                </div>
+              </div>
+              <div
+                class="product-image"
+                style="height: 60.5%; margin-top: 22px"
+              >
+                <div class="upload">
+                  <input
+                    class="upload-input"
+                    type="file"
+                    multiple
+                    name="image"
+                  />
+                  <img
+                    style="width: 300px; height: 300px"
+                    src="../imgs/course-03.jpg"
+                    alt="product image"
+                  />
                 </div>
               </div>
             </div>
-          </div> -->
+            <div class="holder size" style="display: none">
+              <div class="prev-form size">
+                <div class="width">
+                  <label for="width">Width</label>
+                  <input
+                    type="text"
+                    id="width"
+                    placeholder="ex: 15m"
+                    name="width"
+                    value="15px"
+                  />
+                </div>
+                <div class="height">
+                  <label for="height">Height</label>
+                  <input
+                    type="text"
+                    id="height"
+                    placeholder="ex: 15m"
+                    name="height"
+                    value="15px"
+                  />
+                </div>
+                <div class="length">
+                  <label for="length">Length</label>
+                  <input
+                    type="text"
+                    id="length"
+                    placeholder="ex: 15m"
+                    name="length"
+                    value="15px"
+                  />
+                </div>
+                <button class="btn" onclick="showNext(2,event)">Next</button>
+              </div>
+            </div>
+            <div class="holder info" style="display: none">
+              <div
+                class="prev-form info"
+                style="
+                  width: 100%;
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 20px;
+                "
+              >
+                <div class="category">
+                  <label for="category">Category</label>
+                  <input
+                    type="text"
+                    id="category"
+                    placeholder="ex: Livingroom"
+                    name="category"
+                    value="Livingroom"
+                  />
+                </div>
+                <div class="type">
+                  <label for="type">Type</label>
+                  <input
+                    type="text"
+                    id="type"
+                    placeholder="ex: Sofa"
+                    name="type"
+                    value="sofa"
+                  />
+                </div>
+                <div class="style">
+                  <label for="style">Style</label>
+                  <input
+                    type="text"
+                    id="style"
+                    placeholder="ex: Modern"
+                    name="style"
+                    value="modern"
+                  />
+                </div>
+                <div class="material">
+                  <label for="material">Material</label>
+                  <input
+                    type="text"
+                    id="material"
+                    placeholder="ex: wood"
+                    name="material"
+                    value="wood"
+                  />
+                </div>
+                <div class="design-type">
+                  <label for="design-type">Design Type</label>
+                  <input
+                    type="text"
+                    id="design-type"
+                    placeholder="ex: interior"
+                    name="design-type"
+                    value="interior"
+                  />
+                </div>
+                <div class="sale">
+                  <label for="sale">Sale</label>
+                  <input
+                    type="text"
+                    id="sale"
+                    name="sale"
+                    value="50%"
+                    placeholder="ex: 50%"
+                  />
+                </div>
+                <div class="colors">
+                  <label for="colors">Colors</label>
+                  <div class="inputs">
+                    <input type="color" name="first-color" value="#ff0000" />
+                    <input type="color" name="second-color" value="#00ff00" />
+                    <input type="color" name="third-color" value="#0000ff" />
+                  </div>
+                </div>
+                <input class="btn" type="submit" value="Save" />
+              </div>
+            </div>
+          </form>
           <div class="overlay notification" style="display: none">
             <div class="content">
               <img src="../imgs/newOrder.png" alt="" />
@@ -2386,7 +2385,7 @@
                   <button
                     class="cancel popup-btn"
                     style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,0)"
+                    onclick="handlePopUp(false,1)"
                   >
                     Dismiss
                   </button>
@@ -2398,15 +2397,20 @@
       </div>
     </div>
     <script>
-      const overlay = document.querySelectorAll(".overlay");
-      function handlePopUp(isShow, elementID) {
-        if (isShow) overlay[elementID].style.display = "flex";
-        else overlay[elementID].style.display = "none";
+      const overlay = document.querySelector(".overlay");
+      function handlePopUp(isShow) {
+        if (isShow) overlay.style.display = "flex";
+        else overlay.style.display = "none";
+      }
+      const settingsOverlay = document.querySelectorAll(".overlays .overlay");
+      function handleSettingsPopUp(isShow, elementID) {
+        if (isShow) settingsOverlay[elementID].style.display = "flex";
+        else settingsOverlay[elementID].style.display = "none";
       }
       // accordion
       const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
-        if (event) event.preventDefault();
+        event.preventDefault();
         if (element.classList.contains("closed")) {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-up";
@@ -2419,122 +2423,33 @@
             "none";
         }
       }
-      showNestedList(true, null, document.querySelector(".icon.cur-active"));
-      // deliveryName
-      const statusArr = document.querySelectorAll('[data-label="Status"]');
-      const deliveryName = document.querySelectorAll('[data-label="Delivery"]');
-      const selectedDelivery = document.querySelector(
-        ".select-delivery select"
-      );
-
-      // set The DeliveryName
-      /* let orderInfos, orderID, delivery;
-      if (window.location.search) {
-        orderInfos = window.location.search.split("&");
-        orderID = +orderInfos[0].split("=")[1];
-        delivery = orderInfos[1].split("=")[1];
-        statusArr[orderID].innerHTML = "Pending";
-        controlStatus();
-      } */
-      function controlStatus() {
-        statusArr.forEach((status, i) => {
-          if (status.innerHTML.trim().toLowerCase() == "delivered") {
-            status.style.color = "var(--green-color)";
-          } else if (status.innerHTML.trim().toLowerCase() == "pending") {
-            status.style.color = "var(--orange-color)";
-            // deliveryName[i].innerHTML = delivery;
-          } else {
-            status.style.color = "var(--red-color)";
-            deliveryName[
-              i
-            ].innerHTML = `<a href="chooseDelivery.html?orderID=${i}"
-                      style="
-                        color: var(--blue-color);
-                        text-decoration: underline;
-                        cursor: pointer;
-                      "
-                    >
-                      Choose
-                    </a>`;
+      // tabs enable
+      const tabsHolder = document.querySelector(".tabs");
+      const formsHolder = document.querySelector(".control-products");
+      tabsHolder.addEventListener("click", (e) => {
+        if (e.target.tagName == "LI") {
+          const currentTab = e.target?.innerHTML;
+          for (let i = 0; i < tabsHolder.children.length; i++) {
+            tabsHolder.children[i].classList.remove("active");
           }
-        });
-      }
-      controlStatus();
-
-      // filters
-      const clients = document.querySelectorAll(".wrapper table");
-      const searchInput = document.querySelector(
-        ".wrapper .filters .search input"
-      );
-      const roleSelect = document.querySelector(".wrapper .filters select");
-      const clientsHolder = document.querySelector(".wrapper .show-products");
-      let filteredNames = [];
-      let filteredRoles = [];
-      function resetFilters() {
-        roleSelect.value = "All";
-        searchInput.value = "";
-        showCards();
-      }
-      function showCards(
-        cards = Array.from(clients),
-        cardsHolder = clientsHolder
-      ) {
-        cardsHolder.innerHTML = "";
-        for (let i = 0; i < cards.length; i++) {
-          cardsHolder.appendChild(cards[i]);
+          e.target.classList.add("active");
+          Array.from(formsHolder.children).forEach((formHolder) => {
+            if (formHolder.classList.contains(currentTab.toLowerCase())) {
+              formHolder.style.display = "flex";
+            } else {
+              formHolder.style.display = "none";
+            }
+          });
         }
-      }
-      let filteredInfos = [];
-      const filters = document.querySelector(
-        ".wrapper .filters .filters-holder"
-      );
-      function filterFunc(name, role) {
-        if (name == "" && role == "all") {
-          return Array.from(clients);
-        } else if (role == "all") {
-          return Array.from(clients).filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.toLowerCase()
-                .includes(name) &&
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.charAt(0) != "<"
-          );
-        } else if (name == "") {
-          return Array.from(clients).filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Status']")
-                .innerHTML.toLowerCase() == role
-          );
-        }
-        return Array.from(clients)
-          .filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.toLowerCase()
-                .includes(name) &&
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.charAt(0) != "<"
-          )
-          .filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Status']")
-                .innerHTML.toLowerCase() == role
-          );
-      }
-      filters.addEventListener("input", (e) => {
-        filteredInfos = filterFunc(
-          searchInput.value.toLowerCase(),
-          roleSelect.value.toLowerCase()
-        );
-        showCards(filteredInfos, clientsHolder);
       });
+      // showNextTabContent
+      function showNext(nextElementIndex, e) {
+        e.preventDefault();
+        tabsHolder.children[nextElementIndex].classList.add("active");
+        tabsHolder.children[nextElementIndex - 1].classList.remove("active");
+        formsHolder.children[nextElementIndex].style.display = "flex";
+        formsHolder.children[nextElementIndex - 1].style.display = "none";
+      }
     </script>
   </body>
 </html>

@@ -12,6 +12,16 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500&display=swap"
       rel="stylesheet"
     />
+    <!-- for grid icon -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.2.1/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.2.1/dist/ionicons/ionicons.js"
+    ></script>
+
     <style>
       /* fontawesome icons*/
       /* framework.css */
@@ -272,13 +282,13 @@
         --grey-color: #888;
       }
       /* :root {
-  --primary-color: #1d322f;
-  --secondary-color: #1d322fb2;
-  --third-color: #385854;
-  --nutral-color: #c0c0c0;
-  --text-color: #000e0c;
-  --error-color: #b3261e;
-} */
+        --primary-color: #1d322f;
+        --secondary-color: #1d322fb2;
+        --third-color: #385854;
+        --nutral-color: #c0c0c0;
+        --text-color: #000e0c;
+        --error-color: #b3261e;
+      } */
       * {
         box-sizing: border-box;
       }
@@ -1545,124 +1555,44 @@
       }
       .btn:hover {
         /* box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
+          rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
         background-color: var(--blue-alt-color);
       }
-      .page aside .header {
-        justify-content: space-between;
-      }
-      .page aside {
-        position: absolute;
-        left: -100%;
-      }
-      .wrapper .content table {
-        border: none;
-        margin-bottom: 30px;
-        tr:last-child {
-          margin-bottom: 0px;
-        }
-      }
-      .wrapper .content table thead {
-        display: none;
-      }
-
-      .wrapper .content table tbody tr {
-        display: block;
-        margin-bottom: 30px;
-      }
-
-      .wrapper .content table tbody tr td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border: 1px solid #d5d5d5;
-        border-bottom: none;
-      }
-
-      .wrapper .content table tbody tr td::before {
-        content: attr(data-label);
-        font-weight: bold;
-        margin-right: 10px;
-      }
 
       @media (max-width: 991px) {
       }
       @media (max-width: 991px) {
-      }
-      /* controlledVica */
-      .control-products p {
-        margin-bottom: 41px;
-        font-weight: 700;
-        font-size: 28px;
-      }
-      .control-products .holder {
-        display: flex;
-        justify-content: space-between;
-        gap: 6.8vw;
-      }
-      .control-products form {
-        width: 50%;
-      }
-      .control-products form > div {
-        margin-bottom: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-      .control-products label {
-        font-weight: 600;
-        font-size: 14px;
-        letter-spacing: -0.06px;
-      }
-      .control-products form input:not(.btn) {
-        padding: 13px 19px;
-        border-radius: 6px;
-        border: 1px solid #d8d8d8;
-        caret-color: var(--primary-color);
-      }
-      .control-products form input::placeholder {
-        color: #a6a6a6;
-      }
-      .control-products form input:focus {
-        outline: none;
-      }
-      .control-products .product-image {
-        position: relative;
-        width: 50%;
-        height: 218px;
-      }
-      .control-products .product-image input {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-      }
-      .control-products .product-image .upload {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 2px dashed #4880ff4d;
-      }
-      .control-products .product-image .upload img {
-        width: 123px;
-        height: 113px;
-      }
-      .control-products .loader-container {
-        height: calc(100vh - 80px);
-      }
-      @media (max-width: 991px) {
-        .control-products .holder {
-          flex-wrap: wrap-reverse;
-          gap: 40px;
+        .page aside .header {
+          justify-content: space-between;
         }
-        .control-products .holder form,
-        .control-products .holder .product-image {
-          width: 100%;
+        .page aside {
+          position: absolute;
+          left: -100%;
         }
-        .control-products .holder .product-image {
+        .wrapper .content table {
+          border: none;
+          background-color: transparent;
+        }
+        .wrapper .content table thead {
+          display: none;
+        }
+
+        .wrapper .content table tbody tr {
+          display: block;
+          margin-bottom: 30px;
+        }
+
+        .wrapper .content table tbody tr td {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          border: 1px solid #d5d5d5;
+        }
+
+        .wrapper .content table tbody tr td::before {
+          content: attr(data-label);
+          font-weight: bold;
+          margin-right: 10px;
         }
       }
       /* Product */
@@ -1751,7 +1681,6 @@
       .wrapper .cities-holder .box {
         background-color: white;
       }
-
       /* css */
       .filters,
       .filters-holder {
@@ -1946,33 +1875,8 @@
       .overlay.notification .text {
         margin-top: 20px;
       }
-      .overlay .content p {
+      .overlay.notification .content p {
         font-size: 30px;
-      }
-      .overlay.select-delivery .content {
-        justify-content: flex-start;
-        align-items: flex-start;
-        height: auto;
-        .text {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: 30px;
-        }
-        form {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          label {
-            font-size: 24px;
-          }
-          select {
-            height: 50px;
-          }
-        }
       }
       /* accordion */
       .accordion .accordion-holder {
@@ -2016,15 +1920,90 @@
         flex-direction: column;
         justify-content: space-between;
       }
-      /*  */
-      table td {
-        color: #888;
+      /* clickAnimation  */
+      .images {
+        position: relative;
       }
-      table td::before {
-        color: black;
+      .click-animation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 0px;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(192 192 192 / 20%);
+        transition: height 0.5s;
+        cursor: pointer;
       }
-      table td:last-child:before {
-        color: white;
+      .images:hover .click-animation {
+        height: 100%;
+        opacity: 1;
+      }
+      .loader {
+        width: 20px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--blue-color);
+        box-shadow: 0 0 0 0 #1d322f45;
+        animation: l1 1s infinite;
+      }
+      @keyframes l1 {
+        100% {
+          box-shadow: 0 0 0 30px #0000;
+        }
+      }
+      /* Gallery */
+      .images-gallery {
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 24px;
+          padding-bottom: 20px;
+          margin-bottom: 40px;
+          border-bottom: 1px solid #c0c0c0;
+          .back-btn {
+            font-size: inherit;
+            background-color: transparent;
+            border: none;
+            color: var(--blue-color);
+            color: black;
+            font-size: 30px;
+          }
+          .layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            .icon {
+              cursor: pointer;
+            }
+            .active {
+              width: 37px;
+              height: 37px;
+              display: flex;
+              background-color: var(--blue-color);
+              border-radius: 50%;
+              justify-content: center;
+              align-items: center;
+              color: #e7eaed;
+            }
+          }
+        }
+        .boxes {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+          gap: 20px;
+          img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: fill;
+            border: 15px solid white;
+          }
+        }
       }
     </style>
   </head>
@@ -2043,7 +2022,7 @@
           <ul>
             <li>
               <a
-                class="d-flex align-center fs-14 c-black rad-6 p-10"
+                class="active d-flex align-center fs-14 c-black rad-6 p-10"
                 href="index.html"
               >
                 <i class="fa-regular fas fa-city"></i>
@@ -2053,14 +2032,14 @@
 
             <li class="accordion">
               <div
-                class="active accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
+                class="accordion-holder d-flex align-center fs-14 c-black rad-6 p-10"
               >
                 <div class="holder">
                   <i class="far fa-trash-alt fa-fw"></i>
                   <span>Order</span>
                 </div>
                 <div
-                  class="icon closed cur-active"
+                  class="icon closed"
                   onclick="showNestedList(true,event,this)"
                 >
                   <i class="arrow fas fa-angle-down"></i>
@@ -2068,7 +2047,7 @@
               </div>
               <div class="accordion-list" style="padding-left: 10px">
                 <a
-                  class="active d-flex align-center fs-14 c-black rad-6 p-10"
+                  class="d-flex align-center fs-14 c-black rad-6 p-10"
                   href="shop.html"
                 >
                   <i class="far fa-clock fa-fw"></i>
@@ -2148,12 +2127,12 @@
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head p-15 between-flex">
-          <p style="margin: 0px">WorkTimes</p>
+          <p style="margin: 0px">Products</p>
           <div class="icons d-flex align-center">
             <span
               style="cursor: pointer"
               class="notification p-relative"
-              onclick="handlePopUp(true,0)"
+              onclick="handleSettingsPopUp(true,1)"
             >
               <i class="fa-regular fa-bell fa-lg"></i>
             </span>
@@ -2163,235 +2142,42 @@
           </div>
         </div>
         <!-- End Head -->
-        <div class="special-head">
-          <h1 class="p-relative">Manage Shop</h1>
-        </div>
-        <div class="wrapper d-grid gap-20">
-          <div class="filters" style="justify-content: space-between">
-            <div class="filters-holder">
-              <label style="color: var(--blue-color)" for="area-search"
-                >Delivery Name:</label
-              >
-              <div class="search p-relative">
-                <input
-                  id="area-search"
-                  class="p-10"
-                  type="search"
-                  placeholder="Type An Area"
-                />
+        <!-- <div class="special-head" style="margin-bottom: 20px">
+          <h1 class="p-relative">Manage Products</h1>
+          <a href="addProduct.html" class="btn">+ Add Product</a>
+        </div> -->
+        <div class="wrapper images-gallery m-20">
+          <div class="header">
+            <a href="index.html" class="back-btn">
+              <i class="fas fa-arrow-circle-left"></i>
+            </a>
+            <div class="layout">
+              <div class="grid active" id="grid">
+                <!-- <i class="icon fa-solid fas fa-th-large"></i> --><ion-icon
+                  name="grid"
+                  class="icon"
+                ></ion-icon>
               </div>
-              <label style="color: var(--blue-color)" for="cities-select"
-                >Status:</label
-              >
-              <select
-                id="cities-select"
-                style="
-                  padding: 5px;
-                  border: 1px solid #ccc;
-                  color: #888;
-                  background-color: white;
-                  box-shadow: none;
-                "
-                class="btn"
-                name="area"
-                onchange=""
-              >
-                <option value="All">All</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Pending">Pending</option>
-                <option value="Not Delivered">Not Delivered</option>
-              </select>
-            </div>
-            <div class="btn reset-btn" onclick="resetFilters()">Reset</div>
-          </div>
-          <div class="show-products content">
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    Jhon Doe
-                  </td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    200$
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">3</td>
-                  <td data-label="Price">150$</td>
-                  <td data-label="Address">Hama, Syria</td>
-                  <td data-label="Status">Not Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery"></td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    $450
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery">
-                    Jhon Doe
-                  </td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    $200
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table>
-              <thead>
-                <tr>
-                  <th>Product Code</th>
-                  <th>Amount</th>
-                  <th>Price</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr scope="row">
-                  <td data-label="Product Code">1</td>
-                  <td data-label="Amount">2</td>
-                  <td data-label="Price">100$</td>
-                  <td data-label="Address">Homs, Syria</td>
-                  <td data-label="Status">Not Delivered</td>
-                  <td style="border-bottom: none" data-label="Delivery"></td>
-                  <td
-                    style="
-                      background-color: var(--blue-alt-color);
-                      color: white;
-                      border-radius: 0px 0px 8px 8px;
-                    "
-                    data-label="Total"
-                  >
-                    $200
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- <div class="overlay select-delivery" style="display: none">
-            <div class="content">
-              <div class="text">
-                <form>
-                  <label for="delivery-name">Select Delivery:</label>
-                  <select name="delivery-name" id="delivery-name">
-                    <option value="jhonDoe">Jhon Doe</option>
-                    <option value="janeDoe">Jane Doe</option>
-                  </select>
-                </form>
-                <div class="btns">
-                  <button
-                    class="confirm popup-btn"
-                    style="background-color: var(--blue-alt-color)"
-                  >
-                    Select
-                  </button>
-                  <button
-                    class="cancel popup-btn"
-                    style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,0)"
-                  >
-                    Cancel
-                  </button>
-                </div>
+              <div class="rows" id="rows">
+                <i class="icon fa fa-navicon"></i>
               </div>
             </div>
-          </div> -->
-          <div class="overlay notification" style="display: none">
-            <div class="content">
-              <img src="../imgs/newOrder.png" alt="" />
-              <div class="text">
-                <p>You Have 3 new Orders!!</p>
-                <div class="btns">
-                  <a
-                    href="order.html"
-                    class="confirm popup-btn"
-                    style="background-color: var(--blue-alt-color)"
-                  >
-                    View
-                  </a>
-                  <button
-                    class="cancel popup-btn"
-                    style="background-color: var(--red-color)"
-                    onclick="handlePopUp(false,0)"
-                  >
-                    Dismiss
-                  </button>
-                </div>
-              </div>
+          </div>
+          <div class="boxes">
+            <div class="box">
+              <img src="../imgs/course-01.jpg" alt="" />
+            </div>
+            <div class="box">
+              <img src="../imgs/course-02.jpg" alt="" />
+            </div>
+            <div class="box">
+              <img src="../imgs/course-03.jpg" alt="" />
+            </div>
+            <div class="box">
+              <img src="../imgs/course-04.jpg" alt="" />
+            </div>
+            <div class="box">
+              <img src="../imgs/course-05.jpg" alt="" />
             </div>
           </div>
         </div>
@@ -2403,10 +2189,15 @@
         if (isShow) overlay[elementID].style.display = "flex";
         else overlay[elementID].style.display = "none";
       }
+      const settingsOverlay = document.querySelectorAll(".overlays .overlay");
+      function handleSettingsPopUp(isShow, elementID) {
+        if (isShow) settingsOverlay[elementID].style.display = "flex";
+        else settingsOverlay[elementID].style.display = "none";
+      }
       // accordion
       const accordion = document.querySelectorAll(".accordion");
       function showNestedList(isShow, event, element) {
-        if (event) event.preventDefault();
+        event.preventDefault();
         if (element.classList.contains("closed")) {
           element.classList.toggle("closed");
           element.children[0].className = "arrow 	fas fa-angle-up";
@@ -2419,121 +2210,33 @@
             "none";
         }
       }
-      showNestedList(true, null, document.querySelector(".icon.cur-active"));
-      // deliveryName
-      const statusArr = document.querySelectorAll('[data-label="Status"]');
-      const deliveryName = document.querySelectorAll('[data-label="Delivery"]');
-      const selectedDelivery = document.querySelector(
-        ".select-delivery select"
-      );
-
-      // set The DeliveryName
-      /* let orderInfos, orderID, delivery;
-      if (window.location.search) {
-        orderInfos = window.location.search.split("&");
-        orderID = +orderInfos[0].split("=")[1];
-        delivery = orderInfos[1].split("=")[1];
-        statusArr[orderID].innerHTML = "Pending";
-        controlStatus();
-      } */
-      function controlStatus() {
-        statusArr.forEach((status, i) => {
-          if (status.innerHTML.trim().toLowerCase() == "delivered") {
-            status.style.color = "var(--green-color)";
-          } else if (status.innerHTML.trim().toLowerCase() == "pending") {
-            status.style.color = "var(--orange-color)";
-            // deliveryName[i].innerHTML = delivery;
-          } else {
-            status.style.color = "var(--red-color)";
-            deliveryName[
-              i
-            ].innerHTML = `<a href="chooseDelivery.html?orderID=${i}"
-                      style="
-                        color: var(--blue-color);
-                        text-decoration: underline;
-                        cursor: pointer;
-                      "
-                    >
-                      Choose
-                    </a>`;
-          }
-        });
-      }
-      controlStatus();
-
-      // filters
-      const clients = document.querySelectorAll(".wrapper table");
-      const searchInput = document.querySelector(
-        ".wrapper .filters .search input"
-      );
-      const roleSelect = document.querySelector(".wrapper .filters select");
-      const clientsHolder = document.querySelector(".wrapper .show-products");
-      let filteredNames = [];
-      let filteredRoles = [];
-      function resetFilters() {
-        roleSelect.value = "All";
-        searchInput.value = "";
-        showCards();
-      }
-      function showCards(
-        cards = Array.from(clients),
-        cardsHolder = clientsHolder
-      ) {
-        cardsHolder.innerHTML = "";
-        for (let i = 0; i < cards.length; i++) {
-          cardsHolder.appendChild(cards[i]);
+      //   layoutControl
+      const galleryHolder = document.querySelector(".boxes");
+      const layoutHolder = document.querySelector(".layout");
+      const layoutControllers = Array.from(layoutHolder.children);
+      layoutHolder.addEventListener("click", (e) => {
+        if (
+          (e.target.classList.contains("icon") &&
+            !e.target.parentElement.classList.contains("active")) ||
+          (!e.target.classList.contains("icon") &&
+            !e.target.classList.contains("active"))
+        ) {
+          layoutControllers.forEach((controller) => {
+            console.log(e.target);
+            if (controller.classList.contains("active")) {
+              controller.classList.remove("active");
+            } else {
+              controller.classList.add("active");
+              if (controller.classList.contains("grid")) {
+                galleryHolder.style.gridTemplateColumns =
+                  "repeat(auto-fill, minmax(400px, 1fr))";
+              }
+              if (controller.classList.contains("rows")) {
+                galleryHolder.style.gridTemplateColumns = "1fr";
+              }
+            }
+          });
         }
-      }
-      let filteredInfos = [];
-      const filters = document.querySelector(
-        ".wrapper .filters .filters-holder"
-      );
-      function filterFunc(name, role) {
-        if (name == "" && role == "all") {
-          return Array.from(clients);
-        } else if (role == "all") {
-          return Array.from(clients).filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.toLowerCase()
-                .includes(name) &&
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.charAt(0) != "<"
-          );
-        } else if (name == "") {
-          return Array.from(clients).filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Status']")
-                .innerHTML.toLowerCase() == role
-          );
-        }
-        return Array.from(clients)
-          .filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.toLowerCase()
-                .includes(name) &&
-              client
-                .querySelector("td[data-label='Delivery']")
-                .innerHTML.charAt(0) != "<"
-          )
-          .filter(
-            (client) =>
-              client
-                .querySelector("td[data-label='Status']")
-                .innerHTML.toLowerCase() == role
-          );
-      }
-      filters.addEventListener("input", (e) => {
-        filteredInfos = filterFunc(
-          searchInput.value.toLowerCase(),
-          roleSelect.value.toLowerCase()
-        );
-        showCards(filteredInfos, clientsHolder);
       });
     </script>
   </body>

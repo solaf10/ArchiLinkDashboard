@@ -272,13 +272,13 @@
         --grey-color: #888;
       }
       /* :root {
-  --primary-color: #1d322f;
-  --secondary-color: #1d322fb2;
-  --third-color: #385854;
-  --nutral-color: #c0c0c0;
-  --text-color: #000e0c;
-  --error-color: #b3261e;
-} */
+        --primary-color: #1d322f;
+        --secondary-color: #1d322fb2;
+        --third-color: #385854;
+        --nutral-color: #c0c0c0;
+        --text-color: #000e0c;
+        --error-color: #b3261e;
+      } */
       * {
         box-sizing: border-box;
       }
@@ -1545,7 +1545,7 @@
       }
       .btn:hover {
         /* box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
+          rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
         background-color: var(--blue-alt-color);
       }
 
@@ -1910,6 +1910,52 @@
         flex-direction: column;
         justify-content: space-between;
       }
+      /* clickAnimation  */
+      .images {
+        position: relative;
+      }
+      .click-animation {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 0px;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(192 192 192 / 20%);
+        transition: height 0.5s;
+        cursor: pointer;
+      }
+      .images:hover .click-animation {
+        height: 100%;
+        opacity: 1;
+      }
+      .loader {
+        width: 20px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--blue-color);
+        box-shadow: 0 0 0 0 #1d322f45;
+        animation: l1 1s infinite;
+      }
+      @keyframes l1 {
+        100% {
+          box-shadow: 0 0 0 30px #0000;
+        }
+      }
+      /* Gallery */
+      .images {
+        a {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 100;
+        }
+      }
     </style>
   </head>
   <body>
@@ -2226,7 +2272,14 @@
           <div class="courses-page d-grid m-20 gap-20">
             <div class="course bg-white rad-6 p-relative">
               <span class="sale">50%</span>
-              <img class="cover" src="../imgs/course-01.jpg" alt="" />
+              <div class="images">
+                <a href="productsGallery.html"></a>
+                <img class="cover" src="../imgs/course-01.jpg" alt="" />
+                <div class="click-animation">
+                  <div class="loader"></div>
+                  <div class="slider"></div>
+                </div>
+              </div>
               <div class="p-20">
                 <h3 class="m-0">Bed</h3>
                 <p class="description c-grey mt-15 fs-14">
@@ -2246,7 +2299,7 @@
                 >
                   <span style="font-size: inherit">5 days to make</span>
                   <div class="btns">
-                    <a href="editWorkTime.html" class="control-btn edit">
+                    <a href="editProduct.html" class="control-btn edit">
                       <img src="../imgs/pencil-write.png" alt="edit" />
                     </a>
                     <button
@@ -2326,7 +2379,13 @@
               </div>
             </div>
             <div class="course bg-white rad-6 p-relative">
-              <img class="cover" src="../imgs/course-02.jpg" alt="" />
+              <div class="images">
+                <a href="productsGallery.html"></a>
+                <img class="cover" src="../imgs/course-02.jpg" alt="" />
+                <div class="click-animation">
+                  <div class="loader"></div>
+                </div>
+              </div>
               <div class="p-20">
                 <h3 class="m-0">Sofa</h3>
                 <p class="description c-grey mt-15 fs-14">
@@ -2346,7 +2405,7 @@
                 >
                   <span style="font-size: inherit">5 days to make</span>
                   <div class="btns">
-                    <a href="editWorkTime.html" class="control-btn edit">
+                    <a href="editProduct.html" class="control-btn edit">
                       <img src="../imgs/pencil-write.png" alt="edit" />
                     </a>
                     <button
@@ -2424,7 +2483,13 @@
             </div>
             <div class="course bg-white rad-6 p-relative">
               <span class="sale">10%</span>
-              <img class="cover" src="../imgs/course-03.jpg" alt="" />
+              <div class="images">
+                <a href="productsGallery.html"></a>
+                <img class="cover" src="../imgs/course-03.jpg" alt="" />
+                <div class="click-animation">
+                  <div class="loader"></div>
+                </div>
+              </div>
               <div class="p-20">
                 <h3 class="m-0">sweet chair</h3>
                 <p class="description c-grey mt-15 fs-14">
@@ -2444,7 +2509,7 @@
                 >
                   <span style="font-size: inherit">5 days to make</span>
                   <div class="btns">
-                    <a href="editWorkTime.html" class="control-btn edit">
+                    <a href="editProduct.html" class="control-btn edit">
                       <img src="../imgs/pencil-write.png" alt="edit" />
                     </a>
                     <button
